@@ -33,6 +33,8 @@ void generate(){
 	char *field;
 	int DISPO_E1[20]={0},DISPO_E2[20]={0},DISPO_E3[20]={0};//variables correspondant a la dispo pour chaque 1/4 H
 
+	int i = 0;//nous creons un curseur qui va nous servir d'index pour remplie les dispo_etage
+
     char day[128];
     time_t temps;
     struct tm date;
@@ -43,12 +45,25 @@ void generate(){
 
     // On remplit la chaîne avec le format choisi, puis on l'affiche.
     strftime(day, 128, "%A", &date);//%A permet de renvoyer exclusivement le jour (Monday,..)
-    //puts(format);
+    //puts(day);
     
+    //la boucle qui va suivre va permettre de remplir les dispo de l'etage 1
+    for (int numero_salle = 100; numero_salle < 120; numero_salle++)
+    {
+        char nom_salle[10] = "p"; //on definit le nom de base soit p
+        char nb_salle[12]; // on creer une chaine de caracteres qui va permettre de recevoir le numero de la salle en caracteres
     
-	
-	
+        sprintf(nb_salle, "%d", numero_salle);//on convertit l'entier numero salle en char dans la chaine de caracteres nb_salle
+        strcat(nom_salle,nb_salle); //on concatene les deux chaines de caracteres
+        strcat(nom_salle,".csv"); //on ajoute la description du fichier 
+        printf("%s\n",nom_salle);
 
+        //DISPO_E1[i]=recherche_salle(1,nom_salle,day,8,0);//nous appelons la fonction de recherche de salle 
+		//en fonction du jour que nous sommmes nous lisons les informations de chaque salle 
+	
+		i++;
+	
+	}
 }
 
 
@@ -76,7 +91,6 @@ int recherche_salle(char nom_salle[10],int heure,int minute){//les minutes --> 0
 
 	while(fgets(buffer,BSIZE,f))
 	{
-		/* get year */
 		field=strtok(buffer,",");//on separe le fichier en chaine de caractere entre chaque (,) 
 		DISPO0=atoi(field);//on associe a la variable la valeur en entier de la chaine de caractere de la valeur lue precedement --> fonction atoi()
 
