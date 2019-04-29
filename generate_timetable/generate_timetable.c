@@ -61,8 +61,7 @@ void generate(){
         //DISPO_E1[i]=recherche_salle(1,nom_salle,day,8,0);//nous appelons la fonction de recherche de salle 
 		//en fonction du jour que nous sommmes nous lisons les informations de chaque salle 
 	
-		i++;
-	
+		i++;//on incremente le curseur de 1 à la fin de la boucle
 	}
 }
 
