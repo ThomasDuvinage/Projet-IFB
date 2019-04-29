@@ -18,8 +18,9 @@ int main()
         strcat(nom_salle,nb_salle); //on concatene les deux chaines de caracteres
         strcat(nom_salle,".csv"); //on ajoute la description du fichier 
         printf("%s\n",nom_salle);
-        recherche_salle(nom_salle,9,15);// puis on utilise le nom de la salle dans la fonction
-    }
+		recherche_salle("/Users/thomasduvinage/Documents/GitHub/Projet-IFB/Read_csv/etage_1/Monday/p219.csv",9,15);// puis on utilise le nom de la salle dans la fonction
+		//printf("%d \n",recherche_salle("/Users/thomasduvinage/Documents/GitHub/Projet-IFB/Read_csv/etage_1/Monday/p219.csv",9,15));// puis on utilise le nom de la salle dans la fonction
+	}
 
 }
 

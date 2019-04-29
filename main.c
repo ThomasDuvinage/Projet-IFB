@@ -41,39 +41,54 @@ bool identification(char nom_pswd[10][45],int nb_employe){
     
     int i; //curseur pour la verification lors de l'autentification
     bool check = false; //on definit check comme false comme ca la boucle d'identification va se mettre en marche tant que la personne n'a pas donnee les bon identifiant et mot de passe
-    
+    char ask_retry = "r";//on definit le retry comme au debut cela permet de rentrer dans la fonction 
+
     //dans un premier temps nous demandons le nom et le mot de passe de la personne
     char nom_entre[10];//chaine de caractere qui correspond au nom de l'utilisateur
     char psw_entre[10];//chaine de caractere qui correpond au password de l'utilisateur
     
     
     do {
-        //on fait l'affichage pour la connexion
-        printf(" ==== IDENTIFICATION ==== \n");
-        
-        printf("NOM : ");
-        //on remplie nom avec la chaine de caractere que l'utilisateur vient de rentrer
-        scanf("%s",nom_entre);
-        
-        //printf("%s",nom_entre);
-        
-        printf("PASSWORD : ");
-        //on remplie psw avec la chaine de caractere que l'utilisateur vient de rentrer
-        getchar();//on est oblige de faire un getchar cela nous permet de mettre a jour l'adresse de la memoire
-        scanf(" %s",psw_entre);
-        
-        
-        //printf("%s", psw_entre);
-        
-        for(i = 0;i< nb_employe;i++){
+        if(ask_retry == "r"){
+            //on fait l'affichage pour la connexion
+            printf(" ==== IDENTIFICATION ==== \n");
             
-            //printf("%d ",strcmp(nom_entre,nom_pswd[i])); //aide pour le debug
-            //printf("%d \n",strcmp(nom_entre,nom_pswd[i+1])); //aide pour le debug
-            if(strcmp(nom_entre,nom_pswd[i])==0 && strcmp(psw_entre, nom_pswd[i+1])==0){
-                check = true;
+            printf("NOM : ");
+            //on remplie nom avec la chaine de caractere que l'utilisateur vient de rentrer
+            scanf("%s",nom_entre);
+            
+            //printf("%s",nom_entre);
+            
+            printf("PASSWORD : ");
+            //on remplie psw avec la chaine de caractere que l'utilisateur vient de rentrer
+            getchar();//on est oblige de faire un getchar cela nous permet de mettre a jour l'adresse de la memoire
+            scanf(" %s",psw_entre);
+            
+            
+            //printf("%s", psw_entre);
+            
+            for(i = 0;i< nb_employe;i++){
+                
+                //printf("%d ",strcmp(nom_entre,nom_pswd[i])); //aide pour le debug
+                //printf("%d \n",strcmp(nom_entre,nom_pswd[i+1])); //aide pour le debug
+                if(strcmp(nom_entre,nom_pswd[i])==0 && strcmp(psw_entre, nom_pswd[i+1])==0){
+                    check = true;
+                }
+                i++;
             }
-            i++;
+
+            do
+            {
+                printf("Si vous voulez reesayer appuyer sur r et si vous vou souhaitez creer un compte appuyé sur c \n");
+            } while (ask_retry != 'r' || ask_retry != 'c');
+            
         }
+
+        else
+        {
+            /* code */
+        }
+        
     }while (check != true);
     
     
