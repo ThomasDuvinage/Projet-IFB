@@ -21,7 +21,7 @@ char nom_pswd[20][45];
 
 //DECLARATIONS DES FONCTIONS
 bool identification(char nom_pswd[20][45]);//on declare la fonction
-void lecture_identifiant(char nom_pswd[20][45]);
+void lecture_identifiant(char nom_pswd[20][45],int* nb_employe);
 
 
 
@@ -50,13 +50,11 @@ bool identification(char nom_pswd[20][45]){
     char nom_entre[10];//chaine de caractere qui correspond au nom de l'utilisateur
     char psw_entre[10];//chaine de caractere qui correpond au password de l'utilisateur
     
-    int nb_employe = 4;
+    int nb_employe = 0;
 
     int create_info = 0;//cette variable permet de savoir si la personne a creer un compte dans ce cas on lui demande directement de s'identifier
     
-    lecture_identifiant(nom_pswd);
-
-    printf("%s",nom_pswd[1]);
+    lecture_identifiant(nom_pswd,&nb_employe);
 
     do {
         if(ask_retry == 'r'){
@@ -67,26 +65,28 @@ bool identification(char nom_pswd[20][45]){
             //on remplie nom avec la chaine de caractere que l'utilisateur vient de rentrer
             scanf("%s",nom_entre);
             
-            //printf("%s",nom_entre);
+            printf("%d \n",strcmp(nom_entre,nom_pswd[0]));
+            printf("%s \n",nom_entre);
             
             printf("PASSWORD : ");
             //on remplie psw avec la chaine de caractere que l'utilisateur vient de rentrer
             getchar();//on est oblige de faire un getchar cela nous permet de mettre a jour l'adresse de la memoire
             scanf(" %s",psw_entre);
+
             
             
-            //printf("%s", psw_entre);
+            printf("%d \n",strcmp(psw_entre,nom_pswd[1]));
+            printf("%s \n", psw_entre);
             
-            for(i = 0;i< nb_employe;i++){
+            for(i = 0;i< nb_employe;i=i+2){
                 
-                //printf("%d ",strcmp(nom_entre,nom_pswd[i])); //aide pour le debug
-                //printf("%d \n",strcmp(nom_entre,nom_pswd[i+1])); //aide pour le debug
+                printf("%d ",strcmp(nom_entre,nom_pswd[i])); //aide pour le debug
+                printf("%d \n",strcmp(nom_entre,nom_pswd[i+1])); //aide pour le debug
+                printf("%s %s \n",nom_pswd[i],nom_pswd[i+1]);
                 if(strcmp(nom_entre,nom_pswd[i])==0 && strcmp(psw_entre, nom_pswd[i+1])==0){
                     check = true;
                 }
-                i++;
             }
-
         }
 
         else
@@ -113,7 +113,7 @@ bool identification(char nom_pswd[20][45]){
         {
             do
             {
-                printf("Si vous voulez reesayer appuyer sur r et si vous vou souhaitez creer un compte appuyé sur c \n");
+                printf("Si vous voulez reesayer appuyer sur r et si vous souhaitez creer un compte appuyé sur c \n");
                 scanf(" %c",&ask_retry);
             } while (ask_retry != 'r' && ask_retry != 'c');
         }
@@ -128,7 +128,7 @@ bool identification(char nom_pswd[20][45]){
 
 
 // ******* DEBUT FONCTION DE LECTURE FICHIER *********
-void lecture_identifiant(char nom_pswd[20][45]){
+void lecture_identifiant(char nom_pswd[20][45], int* nb_employe){
     char buffer[BSIZE];
 	FILE *f;
 	char *field;
@@ -154,7 +154,7 @@ void lecture_identifiant(char nom_pswd[20][45]){
 
 		field=strtok(NULL,",");
 		strcpy(pwd,field);
-        printf("%s",pwd);
+        //printf("%s",pwd);
 
 		//les 2 lignes suivantes permettent de remplir le tableau des valeurs lues
 		strcpy(nom_pswd[i],nom);
@@ -163,6 +163,8 @@ void lecture_identifiant(char nom_pswd[20][45]){
 		i=i+2;//on incremente le cursueur 
 
 	}
+
+    *nb_employe = i;
 	/* close file */
 	fclose(f);//femeture de la lecture du fichier
 }
