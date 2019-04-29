@@ -8,7 +8,7 @@ int main(void)
 
     time(&secondes);
     instant=*localtime(&secondes);
-
+    //on affiche le jour et l'heure
     printf("%d/%d ; %d:%d:%d\n", instant.tm_mday+1, instant.tm_mon+1, instant.tm_hour, instant.tm_min, instant.tm_sec);
 
     char format[128];
@@ -20,7 +20,7 @@ int main(void)
     date=*localtime(&temps);
 
     // On remplit la chaîne avec le format choisi, puis on l'affiche.
-    strftime(format, 128, "%A \n", &date);
+    strftime(format, 128, "%A", &date);
     puts(format);
     return 0;
 }
