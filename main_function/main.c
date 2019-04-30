@@ -22,8 +22,7 @@ char nom_pswd[20][45];
 //DECLARATIONS DES FONCTIONS
 bool identification(char nom_pswd[20][45]);//on declare la fonction
 void lecture_identifiant(char nom_pswd[20][45],int* nb_employe);
-
-
+void creation_agent(char nom_pswd[20][45], int* nb_employe);
 
 // ****** MAIN ******
 int main(int argc, const char * argv[]) {
@@ -50,10 +49,12 @@ bool identification(char nom_pswd[20][45]){
 
     int create_info = 0;//cette variable permet de savoir si la personne a creer un compte dans ce cas on lui demande directement de s'identifier
     
-    lecture_identifiant(nom_pswd,&nb_employe);
 
     do {
         if(ask_retry == 'r'){
+
+            lecture_identifiant(nom_pswd,&nb_employe);//dans cette fonction nous remplissons le tableau nom_pswd de tous les ID et PWD puis nous mettons a jour la valeur du nombre d'emploie a l'aide des pointeurs
+
             //on fait l'affichage pour la connexion
             printf(" ==== IDENTIFICATION ==== \n");
 
@@ -61,53 +62,38 @@ bool identification(char nom_pswd[20][45]){
             char nom_entre[20];//chaine de caractere qui correspond au nom de l'utilisateur
             char psw_entre[20];//chaine de caractere qui correpond au password de l'utilisateur
             
-            
             printf("NOM : ");
             //on remplie nom avec la chaine de caractere que l'utilisateur vient de rentrer
-            scanf("%s",nom_entre);
-            //fgets(nom_entre, 20, stdin); 
+            scanf(" %s",nom_entre);
             
-            printf("%d \n",strcmp(nom_entre,nom_pswd[0]));
-            printf("%s \n",nom_entre);
+            //printf("%d \n",strncmp(nom_entre,nom_pswd[0],strlen(nom_entre)));
+            //printf("%s \n",nom_entre);
             
             printf("PASSWORD : ");
             //on remplie psw avec la chaine de caractere que l'utilisateur vient de rentrer
             getchar();//on est oblige de faire un getchar cela nous permet de mettre a jour l'adresse de la memoire
             scanf(" %s",psw_entre);
-
         
-            printf("%d \n",strcmp(psw_entre,nom_pswd[1]));
-            printf("%s \n", psw_entre);
+            //printf("%d \n",strncmp(psw_entre,nom_pswd[1],strlen(psw_entre)));
+            //printf("%s \n", psw_entre);
             
             for(i = 0;i< nb_employe;i=i+2){
-                
-                printf("%d ",strcmp(nom_entre,nom_pswd[i])); //aide pour le debug
-                printf("%d \n",strcmp(nom_entre,nom_pswd[i+1])); //aide pour le debug
-                printf("%s %s \n",nom_pswd[i],nom_pswd[i+1]);
-                if(strcmp(nom_entre,nom_pswd[i])==0 && strcmp(psw_entre, nom_pswd[i+1])==0){
+                //printf("%d ",strncmp(nom_entre,nom_pswd[i],strlen(nom_entre))); //aide pour le debug
+                //printf("%d \n",strncmp(psw_entre,nom_pswd[i+1],strlen(psw_entre))); //aide pour le debug
+                //printf("%s %s \n",nom_pswd[i],nom_pswd[i+1]);
+
+                //strncmp permet de comparer pour un certain nombre de caractere soit la longueur du nom ou du pwd donné 
+                if(strncmp(nom_entre,nom_pswd[i],strlen(nom_entre))==0 && strncmp(psw_entre, nom_pswd[i+1],strlen(psw_entre))==0){
                     check = true;
                 }
             }
+            create_info = 0;
         }
 
         else
         {
-            char nom[20];
-            char pwd[20];
-            int create_info = 0;
-
-            printf("==== CREATION DE COMPTE ==== \n");
-            printf("Nom = ");
-            getchar();
-            scanf(" %s",nom);
-
-            printf("\nMot de passe = ");
-            getchar();
-            scanf(" %s",pwd);
-            printf("\n");
-
+            //creation_agent(nom_pswd,&nb_employe);
             create_info = 1;
-            nb_employe = nb_employe + 2;
         }
         
         if (check == false && create_info == 0)
@@ -168,5 +154,38 @@ void lecture_identifiant(char nom_pswd[20][45], int* nb_employe){
     *nb_employe = i;
 	/* close file */
 	fclose(f);//femeture de la lecture du fichier
+}
+
+void creation_agent(char nom_pswd[20][45], int* nb_employe){
+    FILE *f;
+    char nom[20];
+    char pwd[20];
+    int create_info = 0;
+
+    printf("==== CREATION DE COMPTE ==== \n");
+    printf("Nom = ");
+    getchar();
+    scanf(" %s",nom);
+
+    printf("\nMot de passe = ");
+    getchar();
+    scanf(" %s",pwd);
+    printf("\n");
+
+    strcpy(nom_pswd[*nb_employe],nom);
+    strcpy(nom_pswd[*nb_employe+1],pwd);
+
+    //on passe en mode ecriture de fichier, cela permet de remplacer les valeurs dans le tableau et apres de les inseres dans le fichier
+	f = fopen("identifiants.csv","w");
+
+    *nb_employe = *nb_employe + 2;
+
+	//on fait une boucle pour remplir le fichier 
+	for(int i = 0; i < *nb_employe; i=i+2)
+	{
+		fprintf(f,"%s,%s\n",nom_pswd[i],nom_pswd[i+1]);//on ecrit dans le fichier les valeurs du tableau que nous avons modofié ou non 
+	}
+	
+	fclose(f);
 }
 
