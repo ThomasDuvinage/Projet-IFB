@@ -22,7 +22,7 @@ char nom_pswd[20][45];
 //DECLARATIONS DES FONCTIONS
 bool identification(char nom_pswd[20][45]);//on declare la fonction
 void lecture_identifiant(char nom_pswd[20][45],int* nb_employe);
-void creation_agent(char nom_pswd[20][45], int* nb_employe);
+int creation_agent(char nom_pswd[20][45], int* nb_employe);
 
 // ****** MAIN ******
 int main(int argc, const char * argv[]) {
@@ -90,10 +90,11 @@ bool identification(char nom_pswd[20][45]){
             create_info = 0;
         }
 
-        else
+        if(ask_retry == 'c' && create_info == 0)
         {
             creation_agent(nom_pswd,&nb_employe);
             create_info = 1;
+            ask_retry = 'r';
         }
         
         if (check == false && create_info == 0)
@@ -157,7 +158,7 @@ void lecture_identifiant(char nom_pswd[20][45], int* nb_employe){
 }
 
 //cette fonction me permet de creer un agent en l'ajoutant dans le fichier 
-void creation_agent(char nom_pswd[20][45], int* nb_employe){
+int creation_agent(char nom_pswd[20][45], int* nb_employe){
     FILE *f;
     char nom[20];
     char pwd[20];
@@ -182,9 +183,11 @@ void creation_agent(char nom_pswd[20][45], int* nb_employe){
 	//on fait une boucle pour remplir le fichier 
 	for(int i = 0; i < *nb_employe; i=i+2)
 	{
-		fprintf(f,"%s,%s",nom_pswd[i],nom_pswd[i+1]);//on ecrit dans le fichier les valeurs du tableau que nous avons modofié ou non 
+		fprintf(f,"%s,%s\n",nom_pswd[i],nom_pswd[i+1]);//on ecrit dans le fichier les valeurs du tableau que nous avons modofié ou non 
     }
 	
 	fclose(f);
+
+    return 0;
 }
 
