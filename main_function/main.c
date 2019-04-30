@@ -92,7 +92,7 @@ bool identification(char nom_pswd[20][45]){
 
         else
         {
-            //creation_agent(nom_pswd,&nb_employe);
+            creation_agent(nom_pswd,&nb_employe);
             create_info = 1;
         }
         
@@ -156,6 +156,7 @@ void lecture_identifiant(char nom_pswd[20][45], int* nb_employe){
 	fclose(f);//femeture de la lecture du fichier
 }
 
+//cette fonction me permet de creer un agent en l'ajoutant dans le fichier 
 void creation_agent(char nom_pswd[20][45], int* nb_employe){
     FILE *f;
     char nom[20];
@@ -164,12 +165,10 @@ void creation_agent(char nom_pswd[20][45], int* nb_employe){
 
     printf("==== CREATION DE COMPTE ==== \n");
     printf("Nom = ");
-    getchar();
-    scanf(" %s",nom);
+    scanf("%s",nom);
 
-    printf("\nMot de passe = ");
-    getchar();
-    scanf(" %s",pwd);
+    printf("Mot de passe = ");
+    scanf("%s",pwd);
     printf("\n");
 
     strcpy(nom_pswd[*nb_employe],nom);
@@ -183,8 +182,8 @@ void creation_agent(char nom_pswd[20][45], int* nb_employe){
 	//on fait une boucle pour remplir le fichier 
 	for(int i = 0; i < *nb_employe; i=i+2)
 	{
-		fprintf(f,"%s,%s\n",nom_pswd[i],nom_pswd[i+1]);//on ecrit dans le fichier les valeurs du tableau que nous avons modofié ou non 
-	}
+		fprintf(f,"%s,%s",nom_pswd[i],nom_pswd[i+1]);//on ecrit dans le fichier les valeurs du tableau que nous avons modofié ou non 
+    }
 	
 	fclose(f);
 }
