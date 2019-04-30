@@ -46,10 +46,6 @@ bool identification(char nom_pswd[20][45]){
     bool check = false; //on definit check comme false comme ca la boucle d'identification va se mettre en marche tant que la personne n'a pas donnee les bon identifiant et mot de passe
     char ask_retry = 'r';//on definit le retry comme au debut cela permet de rentrer dans la fonction 
 
-    //dans un premier temps nous demandons le nom et le mot de passe de la personne
-    char nom_entre[10];//chaine de caractere qui correspond au nom de l'utilisateur
-    char psw_entre[10];//chaine de caractere qui correpond au password de l'utilisateur
-    
     int nb_employe = 0;
 
     int create_info = 0;//cette variable permet de savoir si la personne a creer un compte dans ce cas on lui demande directement de s'identifier
@@ -60,10 +56,16 @@ bool identification(char nom_pswd[20][45]){
         if(ask_retry == 'r'){
             //on fait l'affichage pour la connexion
             printf(" ==== IDENTIFICATION ==== \n");
+
+            //dans un premier temps nous demandons le nom et le mot de passe de la personne
+            char nom_entre[20];//chaine de caractere qui correspond au nom de l'utilisateur
+            char psw_entre[20];//chaine de caractere qui correpond au password de l'utilisateur
+            
             
             printf("NOM : ");
             //on remplie nom avec la chaine de caractere que l'utilisateur vient de rentrer
             scanf("%s",nom_entre);
+            //fgets(nom_entre, 20, stdin); 
             
             printf("%d \n",strcmp(nom_entre,nom_pswd[0]));
             printf("%s \n",nom_entre);
@@ -73,8 +75,7 @@ bool identification(char nom_pswd[20][45]){
             getchar();//on est oblige de faire un getchar cela nous permet de mettre a jour l'adresse de la memoire
             scanf(" %s",psw_entre);
 
-            
-            
+        
             printf("%d \n",strcmp(psw_entre,nom_pswd[1]));
             printf("%s \n", psw_entre);
             
