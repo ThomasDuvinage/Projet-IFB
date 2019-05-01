@@ -9,7 +9,6 @@ int recherche_salle();
 int main()
 {
 
-<<<<<<< HEAD
     for(int i = 219; i<221;i++){
         char nom_salle[10] = "p"; //on definit le nom de base soit p
         char nb_salle[12]; // on creer une chaine de caracteres qui va permettre de recevoir le numero de la salle en caracteres
@@ -22,18 +21,6 @@ int main()
 		recherche_salle("/Users/thomasduvinage/Documents/GitHub/Projet-IFB/Read_csv/etage_1/Monday/p219.csv",9,15);// puis on utilise le nom de la salle dans la fonction
 		//printf("%d \n",recherche_salle("/Users/thomasduvinage/Documents/GitHub/Projet-IFB/Read_csv/etage_1/Monday/p219.csv",9,15));// puis on utilise le nom de la salle dans la fonction
 	}
-=======
-    char nom_salle[100] = "etage_1/Monday/p219.csv"; //on definit le nom de base soit p
-//        char nb_salle[12]; // on creer une chaine de caracteres qui va permettre de recevoir le numero de la salle en caracteres
-//
-//        int numero_salle = i; // numero de la salle que nous recherchons
-//        sprintf(nb_salle, "%d", numero_salle);//on convertit l'entier numero salle en char dans la chaine de caracteres nb_salle
-//        strcat(nom_salle,nb_salle); //on concatene les deux chaines de caracteres
-//        strcat(nom_salle,".csv"); //on ajoute la description du fichier
-//        printf("%s\n",nom_salle);
-    recherche_salle(nom_salle,9,15);// puis on utilise le nom de la salle dans la fonctio
-    printf("%d",recherche_salle(nom_salle,9,15));
->>>>>>> 51fd0aaa8f20874e9d82798ed02f8edee598448e
 
 }
 
