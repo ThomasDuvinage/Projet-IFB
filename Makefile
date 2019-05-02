@@ -9,7 +9,7 @@ LIB		:= lib
 LIBRARIES	:=
 
 ifeq ($(OS),Windows_NT)
-EXECUTABLE	:= main.exe
+EXECUTABLE	:= main.app
 else
 EXECUTABLE	:= main
 endif
