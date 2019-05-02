@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#include <math.h>
 
 #define BSIZE 80
 
@@ -99,7 +100,28 @@ void generate(int nb_employe,int DISPO_E1[20],int DISPO_E2[20],int DISPO_E3[20])
 
 }
 
-double ecart_type(int DISPO_ETAGE[20]){
+float ecart_type(int DISPO_ETAGE[20]){
+	int nombre_interation = strlen(DISPO_ETAGE)/2;//cela permet de dire que le nombre d'itterations correspond au nombre de 1/4h pour une demi journee (/2)
+	int sum = 0; //cela permet de calculer la somme des termes afin de faire la moyenne
+	float ecart_type = 0;
+
+	//le for qui sui permet de calculer la somme afin de faire le calcul de la moyenne
+	for (int itterations = 0; itterations < nombre_interation; itterations++)
+	{
+		sum += DISPO_ETAGE[itterations];
+	}
+
+	float moyenne = sum / nombre_interation;//on calcul la moyenne
+
+	//le for qui va suivre permet de faire le calcul de l'ecart type
+	for (int itterations = 0; itterations < nombre_interation; itterations++)
+	{
+		ecart_type += pow(abs(DISPO_ETAGE[itterations] - moyenne),2);
+	}
+
+	ecart_type = sqrt(ecart_type);
+
+	return ecart_type;
 	
 }
 
