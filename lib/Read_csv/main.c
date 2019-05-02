@@ -83,5 +83,3 @@ int recherche_salle(int etage,char nom_salle[10],char jour[10],int heure,int min
 
 	return(DISPO_J[index]);
 }
-
-
