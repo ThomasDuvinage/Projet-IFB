@@ -83,7 +83,7 @@ void generate(int nb_employe){
 		}
 	}
 
-	//en sortie de cette boucle 
+	//en sortie de cette boucle on a par exemple etage_1 = [0,0,121,0]
 }
 
 
