@@ -5,9 +5,13 @@
 
 #define BSIZE 80
 
-int recherche_salle();
+//nous definisons les fonctions
+int recherche_salle(int etage,char nom_salle[10],char jour[10],int heure,int minute);
+void generate(int nb_employe,int DISPO_E1[20],int DISPO_E2[20],int DISPO_E3[20]);
 
-void generate();
+
+int DISPO_E1[20]={0},DISPO_E2[20]={0},DISPO_E3[20]={0};//variables correspondant a la dispo pour chaque 1/4 H
+
 
 int main()
 {
@@ -15,11 +19,10 @@ int main()
 }
 
 
-void generate(int nb_employe){
+void generate(int nb_employe,int DISPO_E1[20],int DISPO_E2[20],int DISPO_E3[20]){
 	char buffer[BSIZE];
 	FILE *f;
 	char *field;
-	int DISPO_E1[20]={0},DISPO_E2[20]={0},DISPO_E3[20]={0};//variables correspondant a la dispo pour chaque 1/4 H
 
 	int i = 0;//nous creons un curseur qui va nous servir d'index pour remplie les dispo_etage
 
@@ -44,17 +47,20 @@ void generate(int nb_employe){
 	{
 		for(int minute = 0; minute <=45; minute = minute + 15)
 		{
-			for (int etage = 1; etage <= 3; i++)//pour chaque etage nous balayons les salles dispo
+			for (int etage = 0; etage < 3; i++)//pour chaque etage nous balayons les salles dispo
 			{
 				//la boucle qui va suivre va permettre de remplir les dispo de l'etage 1
 				for (int numero_salle = 100; numero_salle < 120; numero_salle++)
 				{
+					numero_salle = numero_salle+(100*etage);//nous somme oblige de faire cela car numero salle varie de 100 a 120 
+					//or dans les etages nous modifions le numero de salle de 100 en 100 donc si nous passons a l'etage 2 soit etage = 1 dans le programme alors on aura numero salle = 220 par exemple
 					switch (etage)
 					{
 					case 1:
 						//rechercher la dispo de toutes les salles pour l'etage 1
-						if(recherche_salle(etage,numero_salle,day,heure,minute) == 0){
-							etage_1[index_etage1] = numero_salle;	
+						if(recherche_salle(etage+1,numero_salle,day,heure,minute) == 0){
+							etage_1[index_etage1] = numero_salle; //nous somme oblige de faire cela car numero salle varie de 100 a 120 
+							//or dans les etages nous modifions le numero de salle de 100 en 100 donc si nous passons a l'etage 2 soit etage = 1 dans le programme alors 
 							nb_tache1++;	
 						}		
 						index_etage1++;				
@@ -89,6 +95,11 @@ void generate(int nb_employe){
 	//en sortie de cette boucle on a par exemple etage_1 = [0,0,121,0]
 	//nous devons maintenant definir pour quel etage est ce qu'il a le plus de salle a nettoyer
 
+
+
+}
+
+double ecart_type(int DISPO_ETAGE[20]){
 	
 }
 
