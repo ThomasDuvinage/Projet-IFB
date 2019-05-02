@@ -27,7 +27,7 @@ int main()
 }
 
 
-void generate(){
+void generate(int nb_employe){
 	char buffer[BSIZE];
 	FILE *f;
 	char *field;
@@ -35,9 +35,9 @@ void generate(){
 
 	int i = 0;//nous creons un curseur qui va nous servir d'index pour remplie les dispo_etage
 
-    char day[128];
-    time_t temps;
-    struct tm date;
+    char day[128];//cette chaine permet d'acceullir le nom du jour de la semaine
+    time_t temps; //on initialise la librairie time a ce moment 
+    struct tm date;//cela permet de faire appel a un dictionnaire deja present dans la librairie
 
     // On récupère la date et l'heure actuelles.
     time(&temps);
@@ -45,23 +45,34 @@ void generate(){
 
     // On remplit la chaîne avec le format choisi, puis on l'affiche.
     strftime(day, 128, "%A", &date);//%A permet de renvoyer exclusivement le jour (Monday,..)
-    //puts(day);
-    
-    //la boucle qui va suivre va permettre de remplir les dispo de l'etage 1
-    for (int numero_salle = 100; numero_salle < 120; numero_salle++)
-    {
-        char nom_salle[10] = "p"; //on definit le nom de base soit p
-        char nb_salle[12]; // on creer une chaine de caracteres qui va permettre de recevoir le numero de la salle en caracteres
-    
-        sprintf(nb_salle, "%d", numero_salle);//on convertit l'entier numero salle en char dans la chaine de caracteres nb_salle
-        strcat(nom_salle,nb_salle); //on concatene les deux chaines de caracteres
-        strcat(nom_salle,".csv"); //on ajoute la description du fichier 
-        printf("%s\n",nom_salle);
+    //puts(day);//permet d'afficher le jour que nous sommes
 
-        //DISPO_E1[i]=recherche_salle(1,nom_salle,day,8,0);//nous appelons la fonction de recherche de salle 
-		//en fonction du jour que nous sommmes nous lisons les informations de chaque salle 
-	
-		i++;//on incremente le curseur de 1 à la fin de la boucle
+	int etage_1={0}, etage_2 = {0},etage_3={0};
+    
+	for(int heure = 8; heure <= 18;heure++){//pour chaque heure de la journee nous remplisons les salles disponibles
+		for (int etage = 1; etage <= 3; i++)//pour chaque etage nous balayons les salles dispo
+		{
+			//la boucle qui va suivre va permettre de remplir les dispo de l'etage 1
+			for (int numero_salle = 100; numero_salle < 120; numero_salle++)
+			{
+				switch (etage)
+				{
+				case 1:
+					//rechercher la dispo de toutes les salles pour l'etage 1
+					recherche_salle();
+					break;
+
+				case 2:
+					//rechercher la dispo de toutes les salles pour l'etage 2
+
+				case 3:
+					//recherche la dispo de toutes les salles de l'etage 3
+				
+				default:
+					break;
+				}
+			}
+		}
 	}
 }
 

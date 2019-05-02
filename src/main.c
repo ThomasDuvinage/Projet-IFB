@@ -172,8 +172,8 @@ int creation_agent(char nom_pswd[20][45], int* nb_employe){
     scanf("%s",pwd);
     printf("\n");
 
-    strcpy(nom_pswd[*nb_employe],nom);
-    strcpy(nom_pswd[*nb_employe+1],pwd);
+    strncpy(nom_pswd[*nb_employe],nom,strlen(nom));
+    strncpy(nom_pswd[*nb_employe+1],pwd,strlen(pwd));
 
     //on passe en mode ecriture de fichier, cela permet de remplacer les valeurs dans le tableau et apres de les inseres dans le fichier
 	f = fopen("identifiants.csv","w");
