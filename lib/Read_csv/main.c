@@ -74,10 +74,6 @@ int recherche_salle(int etage,int numero_salle[10],char jour[10],int heure,int m
                     field=strtok(NULL,",");
                     DISPO15=atoi(field);
 
-<<<<<<< HEAD
-	return(DISPO_J[index]);
-}
-=======
                     field=strtok(NULL,",");
                     DISPO30=atoi(field);
 
@@ -135,4 +131,3 @@ int recherche_salle(int etage,int numero_salle[10],char jour[10],int heure,int m
 
 
 }
->>>>>>> 17dcfa717987f4b0e08208047b4dbd3604057bee
