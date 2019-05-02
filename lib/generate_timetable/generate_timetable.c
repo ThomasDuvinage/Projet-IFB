@@ -38,6 +38,7 @@ void generate(int nb_employe){
 
 	int etage_1[100]={0}, etage_2[100]= {0},etage_3[100]={0};
 	int index_etage1 = 0, index_etage2 = 0, index_etage3 = 0;
+	int nb_tache1 = 0,nb_tache2 = 0, nb_tache3 = 0;
     
 	for(int heure = 8; heure <= 18;heure++)//pour chaque heure de la journee nous remplisons les salles disponibles
 	{
@@ -53,7 +54,8 @@ void generate(int nb_employe){
 					case 1:
 						//rechercher la dispo de toutes les salles pour l'etage 1
 						if(recherche_salle(etage,numero_salle,day,heure,minute) == 0){
-							etage_1[index_etage1] = numero_salle;		
+							etage_1[index_etage1] = numero_salle;	
+							nb_tache1++;	
 						}		
 						index_etage1++;				
 						break;
@@ -61,7 +63,8 @@ void generate(int nb_employe){
 					case 2:
 						//rechercher la dispo de toutes les salles pour l'etage 2
 						if(recherche_salle(etage,numero_salle,day,heure,minute) == 0){
-							etage_2[index_etage2] = numero_salle;		
+							etage_2[index_etage2] = numero_salle;	
+							nb_tache2;	
 						}		
 						index_etage2++;				
 						break;
@@ -69,21 +72,24 @@ void generate(int nb_employe){
 					case 3:
 						//recherche la dispo de toutes les salles de l'etage 3
 						if(recherche_salle(etage,numero_salle,day,heure,minute) == 0){
-							etage_3[index_etage3] = numero_salle;		
+							etage_3[index_etage3] = numero_salle;	
+							nb_tache3;	
 						}		
 						index_etage3++;				
 						break;
 					
 					default:
 						break;
-					}
-
+					}  
 				}
 			}
 		}
 	}
 
 	//en sortie de cette boucle on a par exemple etage_1 = [0,0,121,0]
+	//nous devons maintenant definir pour quel etage est ce qu'il a le plus de salle a nettoyer
+
+	
 }
 
 
