@@ -8,7 +8,7 @@
 #define NB_SIZE 100
 
 //nous definisons les fonctions
-int recherche_salle(int etage,int numero_salle,char jour[10],int heure,int minute);
+int recherche_salle(int etage,int numero_salle,char jour[],int heure,int minute);
 void generate(int nb_employe,int DISPO_E1[20],int DISPO_E2[20],int DISPO_E3[20]);
 
 //declaration de la fonction pour le calcul de l'ecart type 
@@ -48,7 +48,7 @@ void generate(int nb_employe,int DISPO_E1[],int DISPO_E2[],int DISPO_E3[]){
 	int etage_1[100]={0}, etage_2[100]= {0},etage_3[100]={0};
 	int index_etage1 = 0, index_etage2 = 0, index_etage3 = 0;
 	int nb_tache1 = 0,nb_tache2 = 0, nb_tache3 = 0;
-	int heure,minute,etage,numero_salle,salle=0;
+	int heure,minute,etage,numero_salle;
     
 	for(heure = 8; heure <= 18;heure++)//pour chaque heure de la journee nous remplisons les salles disponibles
 	{
@@ -59,7 +59,7 @@ void generate(int nb_employe,int DISPO_E1[],int DISPO_E2[],int DISPO_E3[]){
 				//la boucle qui va suivre va permettre de remplir les dispo de l'etage 1
 				for (numero_salle = 119; numero_salle <= 120; numero_salle++)
 				{
-					salle = numero_salle+(100*etage);//nous somme oblige de faire cela car numero salle varie de 100 a 120 
+					int salle = numero_salle+(100*etage);//nous somme oblige de faire cela car numero salle varie de 100 a 120 
 					//or dans les etages nous modifions le numero de salle de 100 en 100 donc si nous passons a l'etage 2 soit etage = 1 dans le programme alors on aura numero salle = 220 par exemple
 					if(recherche_salle(etage+1,salle,day,heure,minute) != -1){
 						printf("heure :%d minute : %d etage : %d salle : %d  etat : %d \n\n",heure,minute,etage+1,salle,recherche_salle(etage+1,salle,day,heure,minute));
@@ -137,7 +137,7 @@ int long_DISPO_ETAGE(int chaine[]){
 
 
 
-int recherche_salle(int etage,int numero_salle,char jour[10],int heure,int minute){//les minutes --> 0, 15, 30, 45
+int recherche_salle(int etage,int numero_salle,char jour[],int heure,int minute){//les minutes --> 0, 15, 30, 45
     char buffer[BSIZE];
     FILE *f;
     char *field;
@@ -218,7 +218,6 @@ int recherche_salle(int etage,int numero_salle,char jour[10],int heure,int minut
         	//printf("%d \n",index);
             //printf("%d \n",DISPO_J[index]);
 			etat_return = DISPO_J[index];
-
 	}
 	else
 	{
