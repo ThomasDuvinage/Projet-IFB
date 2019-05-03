@@ -6,20 +6,18 @@
 
 int recherche_salle(int etage,int numero_salle,char jour[10],int heure,int minute);
 
-int main()
-{
+int main(){
 
     printf("%d",recherche_salle(3,219,"Monday",9,30));
 
 }
 
 
-int recherche_salle(int etage,int numero_salle,char jour[10],int heure,int minute) //les minutes --> 0, 15, 30, 45
-{
+int recherche_salle(int etage,int numero_salle,char jour[10],int heure,int minute){//les minutes --> 0, 15, 30, 45
     char buffer[BSIZE];
     FILE *f;
     char *field;
-    int DISPO0,DISPO15,DISPO30,DISPO45;
+    int DISPO0,DISPO15,DISPO30,DISPO45, index = 0;
 
     int DISPO_J[40]= {0}; //tableau qui permet d'acceuillir toutes les valeurs que nous lisons du fichier
     //cela permet de pouvoir modifier le tableau puis de le l'ecrire par la suite dans le fichier
@@ -27,7 +25,7 @@ int recherche_salle(int etage,int numero_salle,char jour[10],int heure,int minut
     int n = 8;//curseur permettant d'afficher l'heure dans l'affichage
     int i = 0; //curseur permettant de remplir le tableau des dispos_j
 
-    char nom_salle[30] = "csv_files/etage_"; //on definit le nom de base soit p
+    char nom_salle[50] = "csv_files/etage_"; //on definit le nom de base soit p
     char nb_salle[12]; // on creer une chaine de caracteres qui va permettre de recevoir le numero de la salle en caracteres
     char numero_etage[5];
     sprintf(numero_etage, "%d",etage);//on convertit l'entier numero salle en char dans la chaine de caracteres nb_salle
@@ -44,12 +42,9 @@ int recherche_salle(int etage,int numero_salle,char jour[10],int heure,int minut
 
 
 
-    if (minute==0 || minute==15 || minute==30 || minute==45 )
-    {
-        if (etage>=1 && etage<=3)
-        {
-            if (heure>=8 && heure<=18)
-            {
+    if (minute == 0 || minute == 15 || minute == 30 || minute == 45){
+        if (etage>=1 && etage<=3){
+            if (heure>=8 && heure<=18){
                 /* open the CSV file */
                 f = fopen(nom_salle,"r");
 
@@ -93,7 +88,7 @@ int recherche_salle(int etage,int numero_salle,char jour[10],int heure,int minut
                 fclose(f);//femeture de la lecture du fichier
 
 
-                int index = ((heure-8)*4)+(minute/15);
+                index = ((heure-8)*4)+(minute/15);
 
                 //printf("%d \n",index);
                 //printf("%d \n",DISPO_J[index]);
@@ -101,13 +96,8 @@ int recherche_salle(int etage,int numero_salle,char jour[10],int heure,int minut
                 return(DISPO_J[index]);
 
             }
-
         }
     }
-    else{
-        printf("erreur,les parametres ne sont pas correct\n");
-        return (-1);
-    }
-
-
+    return(DISPO_J[index]);
 }
+
