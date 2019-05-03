@@ -19,7 +19,7 @@ int DISPO_E1[20]={0},DISPO_E2[20]={0},DISPO_E3[20]={0};//variables correspondant
 
 int main()
 {
-	
+
 }
 
 
@@ -99,9 +99,6 @@ void generate(int nb_employe,int DISPO_E1[20],int DISPO_E2[20],int DISPO_E3[20])
 
 	//en sortie de cette boucle on a par exemple etage_1 = [0,0,121,0]
 	//nous devons maintenant definir pour quel etage est ce qu'il a le plus de salle a nettoyer
-
-
-
 }
 
 
