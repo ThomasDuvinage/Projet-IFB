@@ -50,20 +50,20 @@ void generate(int nb_employe,int DISPO_E1[20],int DISPO_E2[20],int DISPO_E3[20])
 	int nb_tache1 = 0,nb_tache2 = 0, nb_tache3 = 0;
 	int heure,minute,etage,numero_salle;
 
-	printf("%d , %d",numero_salle,recherche_salle(1,219,"Friday",9,15));
+	printf("%d , %d",numero_salle,recherche_salle(1,119,"Friday",9,15));
     
 	for(heure = 8; heure <= 10;heure++)//pour chaque heure de la journee nous remplisons les salles disponibles
 	{
 		for(minute = 0; minute <=45; minute = minute + 15)
 		{
-			for (etage = 0; etage < 3; i++)//pour chaque etage nous balayons les salles dispo
+			for (etage = 0; etage < 1; i++)//pour chaque etage nous balayons les salles dispo
 			{
 				//la boucle qui va suivre va permettre de remplir les dispo de l'etage 1
 				for (numero_salle = 119; numero_salle <= 120; numero_salle++)
 				{
 					numero_salle = numero_salle+(100*etage);//nous somme oblige de faire cela car numero salle varie de 100 a 120 
 					//or dans les etages nous modifions le numero de salle de 100 en 100 donc si nous passons a l'etage 2 soit etage = 1 dans le programme alors on aura numero salle = 220 par exemple
-					printf("%d , %d",numero_salle,recherche_salle(etage+1,numero_salle,day,heure,minute));
+					printf("%d , %d   ",numero_salle,recherche_salle(etage+1,numero_salle,day,heure,minute));
 					switch (etage)
 					{
 					case 1:
@@ -224,8 +224,6 @@ int recherche_salle(int etage,int numero_salle,char jour[10],int heure,int minut
 
                 //printf("%d \n",index);
                 //printf("%d \n",DISPO_J[index]);
-
-                return(DISPO_J[index]);
 
             }
         }

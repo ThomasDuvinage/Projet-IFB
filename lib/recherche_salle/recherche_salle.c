@@ -93,8 +93,6 @@ int recherche_salle(int etage,int numero_salle,char jour[10],int heure,int minut
                 //printf("%d \n",index);
                 //printf("%d \n",DISPO_J[index]);
 
-                return(DISPO_J[index]);
-
             }
         }
     }
