@@ -8,7 +8,7 @@ int recherche_salle(int etage,int numero_salle,char jour[10],int heure,int minut
 
 int main(){
 
-    printf("%d",recherche_salle(3,219,"Monday",9,30));
+    printf("%d",recherche_salle(1,119,"Friday",9,30));
 
 }
 
@@ -25,7 +25,7 @@ int recherche_salle(int etage,int numero_salle,char jour[10],int heure,int minut
     int n = 8;//curseur permettant d'afficher l'heure dans l'affichage
     int i = 0; //curseur permettant de remplir le tableau des dispos_j
 
-    char nom_salle[50] = "csv_files/etage_"; //on definit le nom de base soit p
+    char nom_salle[50] = "../../csv_files/etage_"; //on definit le nom de base soit p
     char nb_salle[12]; // on creer une chaine de caracteres qui va permettre de recevoir le numero de la salle en caracteres
     char numero_etage[5];
     sprintf(numero_etage, "%d",etage);//on convertit l'entier numero salle en char dans la chaine de caracteres nb_salle
