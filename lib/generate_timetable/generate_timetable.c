@@ -26,7 +26,7 @@ int main()
 }
 
 
-void generate(int nb_employe,int DISPO_E1[20],int DISPO_E2[20],int DISPO_E3[20]){
+void generate(int nb_employe,int DISPO_E1[],int DISPO_E2[],int DISPO_E3[]){
 	char buffer[BSIZE];
 	FILE *f;
 	char *field;
@@ -48,55 +48,56 @@ void generate(int nb_employe,int DISPO_E1[20],int DISPO_E2[20],int DISPO_E3[20])
 	int etage_1[100]={0}, etage_2[100]= {0},etage_3[100]={0};
 	int index_etage1 = 0, index_etage2 = 0, index_etage3 = 0;
 	int nb_tache1 = 0,nb_tache2 = 0, nb_tache3 = 0;
-	int heure,minute,etage,numero_salle;
-
-	printf("%d , %d",numero_salle,recherche_salle(1,119,"Friday",9,15));
+	int heure,minute,etage,numero_salle,salle=0;
     
-	for(heure = 8; heure <= 10;heure++)//pour chaque heure de la journee nous remplisons les salles disponibles
+	for(heure = 8; heure <= 18;heure++)//pour chaque heure de la journee nous remplisons les salles disponibles
 	{
-		for(minute = 0; minute <=45; minute = minute + 15)
+		for(minute = 0; minute <= 45; minute = minute + 15)
 		{
-			for (etage = 0; etage < 1; i++)//pour chaque etage nous balayons les salles dispo
+			for (etage = 0; etage < 3; etage++)//pour chaque etage nous balayons les salles dispo
 			{
 				//la boucle qui va suivre va permettre de remplir les dispo de l'etage 1
 				for (numero_salle = 119; numero_salle <= 120; numero_salle++)
 				{
-					numero_salle = numero_salle+(100*etage);//nous somme oblige de faire cela car numero salle varie de 100 a 120 
+					salle = numero_salle+(100*etage);//nous somme oblige de faire cela car numero salle varie de 100 a 120 
 					//or dans les etages nous modifions le numero de salle de 100 en 100 donc si nous passons a l'etage 2 soit etage = 1 dans le programme alors on aura numero salle = 220 par exemple
-					printf("%d , %d   ",numero_salle,recherche_salle(etage+1,numero_salle,day,heure,minute));
-					switch (etage)
-					{
-					case 1:
-						//rechercher la dispo de toutes les salles pour l'etage 1
-						if(recherche_salle(etage+1,numero_salle,day,heure,minute) == 0){
-							etage_1[index_etage1] = numero_salle; //nous somme oblige de faire cela car numero salle varie de 100 a 120 
-							//or dans les etages nous modifions le numero de salle de 100 en 100 donc si nous passons a l'etage 2 soit etage = 1 dans le programme alors 
-							nb_tache1++;	
-						}		
-						index_etage1++;				
-						break;
+					if(recherche_salle(etage+1,salle,day,heure,minute) != -1){
+						printf("heure :%d minute : %d etage : %d salle : %d  etat : %d \n\n",heure,minute,etage+1,salle,recherche_salle(etage+1,salle,day,heure,minute));
+					}
 
-					case 2:
-						//rechercher la dispo de toutes les salles pour l'etage 2
-						if(recherche_salle(etage,numero_salle,day,heure,minute) == 0){
-							etage_2[index_etage2] = numero_salle;	
-							nb_tache2++;	
-						}		
-						index_etage2++;				
-						break;
+					// switch (etage+1)
+					// {
+					// case 1:
+					// 	//rechercher la dispo de toutes les salles pour l'etage 1
+					// 	if(recherche_salle(etage+1,numero_salle,day,heure,minute) == 0){
+					// 		etage_1[index_etage1] = numero_salle; //nous somme oblige de faire cela car numero salle varie de 100 a 120 
+					// 		//or dans les etages nous modifions le numero de salle de 100 en 100 donc si nous passons a l'etage 2 soit etage = 1 dans le programme alors 
+					// 		nb_tache1++;	
+					// 	}		
+					// 	index_etage1++;				
+					// 	break;
 
-					case 3:
-						//recherche la dispo de toutes les salles de l'etage 3
-						if(recherche_salle(etage,numero_salle,day,heure,minute) == 0){
-							etage_3[index_etage3] = numero_salle;	
-							nb_tache3++;	
-						}		
-						index_etage3++;				
-						break;
+					// case 2:
+					// 	//rechercher la dispo de toutes les salles pour l'etage 2
+					// 	if(recherche_salle(etage,numero_salle,day,heure,minute) == 0){
+					// 		etage_2[index_etage2] = numero_salle;	
+					// 		nb_tache2++;	
+					// 	}		
+					// 	index_etage2++;				
+					// 	break;
+
+					// case 3:
+					// 	//recherche la dispo de toutes les salles de l'etage 3
+					// 	if(recherche_salle(etage,numero_salle,day,heure,minute) == 0){
+					// 		etage_3[index_etage3] = numero_salle;	
+					// 		nb_tache3++;	
+					// 	}		
+					// 	index_etage3++;				
+					// 	break;
 					
-					default:
-						break;
-					}  
+					// default:
+					// 	break;
+					// }  
 				}
 			}
 		}
@@ -149,13 +150,15 @@ int recherche_salle(int etage,int numero_salle,char jour[10],int heure,int minut
     char buffer[BSIZE];
     FILE *f;
     char *field;
-    int DISPO0,DISPO15,DISPO30,DISPO45, index = 0;
+    int DISPO0,DISPO15,DISPO30,DISPO45;
 
     int DISPO_J[40]= {0}; //tableau qui permet d'acceuillir toutes les valeurs que nous lisons du fichier
     //cela permet de pouvoir modifier le tableau puis de le l'ecrire par la suite dans le fichier
 
     int n = 8;//curseur permettant d'afficher l'heure dans l'affichage
     int i = 0; //curseur permettant de remplir le tableau des dispos_j
+
+	int etat_return;  //cette variable correspond a la variable que nous retournons dans la fonction
 
     char nom_salle[50] = "../../csv_files/etage_"; //on definit le nom de base soit p
     char nb_salle[12]; // on creer une chaine de caracteres qui va permettre de recevoir le numero de la salle en caracteres
@@ -170,63 +173,66 @@ int recherche_salle(int etage,int numero_salle,char jour[10],int heure,int minut
     sprintf(nb_salle, "%d", numero_salle);//on convertit l'entier numero salle en char dans la chaine de caracteres nb_salle
     strcat(nom_salle,nb_salle); //on concatene les deux chaines de caracteres
     strcat(nom_salle,".csv"); //on ajoute la description du fichier
-    printf("%s\n",nom_salle);
+    //printf("%s\n",nom_salle);
 
 
 
-    if (minute == 0 || minute == 15 || minute == 30 || minute == 45){
-        if (etage>=1 && etage<=3){
-            if (heure>=8 && heure<=18){
-                /* open the CSV file */
-                f = fopen(nom_salle,"r");
+    if ((minute == 0 || minute == 15 || minute == 30 || minute == 45) && (etage>=1 && etage<=3) && (heure>=8 && heure<=18)){
+        /* open the CSV file */
+        f = fopen(nom_salle,"r");
 
-                if( f == NULL)//si on arrive pas a ouvrir on affiche un message
-                {
-                    printf("Impossible d'ouvrir le fichier '%s'\n",nom_salle);
-                    exit(1);
-                }
-
-                while(fgets(buffer,BSIZE,f))
-                {
-                    /* get year */
-                    field=strtok(buffer,",");//on separe le fichier en chaine de caractere entre chaque (,)
-                    DISPO0=atoi(field);//on associe a la variable la valeur en entier de la chaine de caractere de la valeur lue precedement --> fonction atoi()
-
-                    field=strtok(NULL,",");
-                    DISPO15=atoi(field);
-
-                    field=strtok(NULL,",");
-                    DISPO30=atoi(field);
-
-                    field=strtok(NULL,",");
-                    //fputs("n", f);
-                    DISPO45=atoi(field);
-
-                    /* display the result in the proper format */
-                    //printf("Pour %dh les dispos sont %d -- %d -- %d -- %d\n",n,DISPO0,DISPO15,DISPO30,DISPO45);
-
-                    //les 4 lignes suivantes permettent de remplir le tableau des valeurs lues
-                    DISPO_J[i]=DISPO0;
-                    DISPO_J[i+1] = DISPO15;
-                    DISPO_J[i+2] = DISPO30;
-                    DISPO_J[i+3] = DISPO45;
-
-                    i=i+4;//on incremente le cursueur de 4 en 4
-                    //n++; //utile pour l'affichage de l'heure
-                }
-
-
-                /* close file */
-                fclose(f);//femeture de la lecture du fichier
-
-
-                index = ((heure-8)*4)+(minute/15);
-
-                //printf("%d \n",index);
-                //printf("%d \n",DISPO_J[index]);
-
-            }
+        if( f == NULL)//si on arrive pas a ouvrir on affiche un message
+        {
+            printf("Impossible d'ouvrir le fichier '%s'\n",nom_salle);
+            //exit(1);
         }
-    }
-    return(DISPO_J[index]);
+		else{
+			while(fgets(buffer,BSIZE,f))
+			{
+				/* get year */
+				field=strtok(buffer,",");//on separe le fichier en chaine de caractere entre chaque (,)
+				DISPO0=atoi(field);//on associe a la variable la valeur en entier de la chaine de caractere de la valeur lue precedement --> fonction atoi()
+
+				field=strtok(NULL,",");
+				DISPO15=atoi(field);
+
+				field=strtok(NULL,",");
+				DISPO30=atoi(field);
+
+				field=strtok(NULL,",");
+				//fputs("n", f);
+				DISPO45=atoi(field);
+
+				/* display the result in the proper format */
+				//printf("Pour %dh les dispos sont %d -- %d -- %d -- %d\n",n,DISPO0,DISPO15,DISPO30,DISPO45);
+
+				//les 4 lignes suivantes permettent de remplir le tableau des valeurs lues
+				DISPO_J[i]=DISPO0;
+				DISPO_J[i+1] = DISPO15;
+				DISPO_J[i+2] = DISPO30;
+				DISPO_J[i+3] = DISPO45;
+
+				i=i+4;//on incremente le cursueur de 4 en 4
+				//n++; //utile pour l'affichage de l'heure
+				}
+            }
+
+
+            /* close file */
+            fclose(f);//femeture de la lecture du fichier
+
+
+            int index = ((heure-8)*4)+(minute/15);
+
+        	//printf("%d \n",index);
+            //printf("%d \n",DISPO_J[index]);
+			etat_return = DISPO_J[index];
+
+	}
+	else
+	{
+		etat_return = -1;
+	}
+	
+    return(etat_return);
 }
