@@ -4,20 +4,17 @@
 
 #define BSIZE 80
 
-int recherche_salle();
+int recherche_salle(int etage,int numero_salle,char jour[10],int heure,int minute);
 
 int main()
 {
 
     printf("%d",recherche_salle(3,219,"Monday",9,30));
 
-
-
-
 }
 
 
-int recherche_salle(int etage,int numero_salle[10],char jour[10],int heure,int minute) //les minutes --> 0, 15, 30, 45
+int recherche_salle(int etage,int numero_salle,char jour[10],int heure,int minute) //les minutes --> 0, 15, 30, 45
 {
     char buffer[BSIZE];
     FILE *f;
@@ -30,7 +27,7 @@ int recherche_salle(int etage,int numero_salle[10],char jour[10],int heure,int m
     int n = 8;//curseur permettant d'afficher l'heure dans l'affichage
     int i = 0; //curseur permettant de remplir le tableau des dispos_j
 
-    char nom_salle[10] = "etage_"; //on definit le nom de base soit p
+    char nom_salle[30] = "csv_files/etage_"; //on definit le nom de base soit p
     char nb_salle[12]; // on creer une chaine de caracteres qui va permettre de recevoir le numero de la salle en caracteres
     char numero_etage[5];
     sprintf(numero_etage, "%d",etage);//on convertit l'entier numero salle en char dans la chaine de caracteres nb_salle
@@ -39,7 +36,6 @@ int recherche_salle(int etage,int numero_salle[10],char jour[10],int heure,int m
     strcat(nom_salle,jour);
     strcat(nom_salle,"/");
     strcat(nom_salle,"p");
-
 
     sprintf(nb_salle, "%d", numero_salle);//on convertit l'entier numero salle en char dans la chaine de caracteres nb_salle
     strcat(nom_salle,nb_salle); //on concatene les deux chaines de caracteres
@@ -54,8 +50,6 @@ int recherche_salle(int etage,int numero_salle[10],char jour[10],int heure,int m
         {
             if (heure>=8 && heure<=18)
             {
-
-
                 /* open the CSV file */
                 f = fopen(nom_salle,"r");
 
@@ -108,23 +102,9 @@ int recherche_salle(int etage,int numero_salle[10],char jour[10],int heure,int m
 
             }
 
-            else
-            {
-                printf("erreur,les parametres ne sont pas correct\n");
-                return (-1);
-            }
         }
-
-        else
-        {
-            printf("erreur,les parametres ne sont pas correct\n");
-            return (-1);
-        }
-
-
     }
-    else
-    {
+    else{
         printf("erreur,les parametres ne sont pas correct\n");
         return (-1);
     }

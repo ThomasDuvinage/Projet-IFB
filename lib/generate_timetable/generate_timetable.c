@@ -5,6 +5,7 @@
 #include <math.h>
 
 #define BSIZE 80
+#define NB_SIZE 100
 
 //nous definisons les fonctions
 int recherche_salle(int etage,int numero_salle,char jour[10],int heure,int minute);
@@ -14,12 +15,14 @@ void generate(int nb_employe,int DISPO_E1[20],int DISPO_E2[20],int DISPO_E3[20])
 float ecart_type(int DIPO_ETAGE[]);
 int long_DISPO_ETAGE(int chaine[]);
 
-int DISPO_E1[20]={0},DISPO_E2[20]={0},DISPO_E3[20]={0};//variables correspondant a la dispo pour chaque 1/4 H
+int DISPO_E1[NB_SIZE]={0},DISPO_E2[NB_SIZE]={0},DISPO_E3[NB_SIZE]={0};//variables correspondant a la dispo pour chaque 1/4 H
 
+int nb_employe = 2;
 
 int main()
 {
-
+	generate(nb_employe,DISPO_E1,DISPO_E2,DISPO_E3);
+	
 }
 
 
@@ -42,23 +45,25 @@ void generate(int nb_employe,int DISPO_E1[20],int DISPO_E2[20],int DISPO_E3[20])
     strftime(day, 128, "%A", &date);//%A permet de renvoyer exclusivement le jour (Monday,..)
     //puts(day);//permet d'afficher le jour que nous sommes
 
-
 	int etage_1[100]={0}, etage_2[100]= {0},etage_3[100]={0};
 	int index_etage1 = 0, index_etage2 = 0, index_etage3 = 0;
 	int nb_tache1 = 0,nb_tache2 = 0, nb_tache3 = 0;
 	int heure,minute,etage,numero_salle;
+
+	printf("%d , %d",numero_salle,recherche_salle(1,219,"Friday",9,15));
     
-	for(heure = 8; heure <= 18;heure++)//pour chaque heure de la journee nous remplisons les salles disponibles
+	for(heure = 8; heure <= 10;heure++)//pour chaque heure de la journee nous remplisons les salles disponibles
 	{
 		for(minute = 0; minute <=45; minute = minute + 15)
 		{
 			for (etage = 0; etage < 3; i++)//pour chaque etage nous balayons les salles dispo
 			{
 				//la boucle qui va suivre va permettre de remplir les dispo de l'etage 1
-				for (numero_salle = 100; numero_salle < 120; numero_salle++)
+				for (numero_salle = 119; numero_salle <= 120; numero_salle++)
 				{
 					numero_salle = numero_salle+(100*etage);//nous somme oblige de faire cela car numero salle varie de 100 a 120 
 					//or dans les etages nous modifions le numero de salle de 100 en 100 donc si nous passons a l'etage 2 soit etage = 1 dans le programme alors on aura numero salle = 220 par exemple
+					printf("%d , %d",numero_salle,recherche_salle(etage+1,numero_salle,day,heure,minute));
 					switch (etage)
 					{
 					case 1:
@@ -153,7 +158,7 @@ int recherche_salle(int etage,int numero_salle,char jour[10],int heure,int minut
     int n = 8;//curseur permettant d'afficher l'heure dans l'affichage
     int i = 0; //curseur permettant de remplir le tableau des dispos_j
 
-    char nom_salle[10] = "etage_"; //on definit le nom de base soit p
+    char nom_salle[30] = "csv_file/etage_"; //on definit le nom de base soit p 
     char nb_salle[12]; // on creer une chaine de caracteres qui va permettre de recevoir le numero de la salle en caracteres
     char numero_etage[5];
     sprintf(numero_etage, "%d",etage);//on convertit l'entier numero salle en char dans la chaine de caracteres nb_salle
@@ -170,15 +175,12 @@ int recherche_salle(int etage,int numero_salle,char jour[10],int heure,int minut
     printf("%s\n",nom_salle);
 
 
-
     if (minute==0 || minute==15 || minute==30 || minute==45 )
     {
         if (etage>=1 && etage<=3)
         {
             if (heure>=8 && heure<=18)
             {
-
-
                 /* open the CSV file */
                 f = fopen(nom_salle,"r");
 
