@@ -63,41 +63,32 @@ void generate(int nb_employe,int DISPO_E1[],int DISPO_E2[],int DISPO_E3[]){
 					//or dans les etages nous modifions le numero de salle de 100 en 100 donc si nous passons a l'etage 2 soit etage = 1 dans le programme alors on aura numero salle = 220 par exemple
 					if(recherche_salle(etage+1,salle,day,heure,minute) != -1){
 						printf("heure :%d minute : %d etage : %d salle : %d  etat : %d \n\n",heure,minute,etage+1,salle,recherche_salle(etage+1,salle,day,heure,minute));
+
+						if(etage+1 == 1){
+							//rechercher la dispo de toutes les salles pour l'etage 1
+							if(recherche_salle(etage+1,numero_salle,day,heure,minute) == 0){
+								etage_1[index_etage1] = numero_salle; //nous somme oblige de faire cela car numero salle varie de 100 a 120 
+								//or dans les etages nous modifions le numero de salle de 100 en 100 donc si nous passons a l'etage 2 soit etage = 1 dans le programme alors 
+								index_etage1++;		
+							}					
+						}
+
+						if(etage+1 == 2){
+							//rechercher la dispo de toutes les salles pour l'etage 2
+							if(recherche_salle(etage,numero_salle,day,heure,minute) == 0){
+								etage_2[index_etage2] = numero_salle;	
+								index_etage2++;	
+							}		
+						}
+
+						if(etage+1 == 3){
+							//recherche la dispo de toutes les salles de l'etage 3
+							if(recherche_salle(etage,numero_salle,day,heure,minute) == 0){
+								etage_3[index_etage3] = numero_salle;	
+								index_etage3++;		
+							}				
+						}
 					}
-
-					// switch (etage+1)
-					// {
-					// case 1:
-					// 	//rechercher la dispo de toutes les salles pour l'etage 1
-					// 	if(recherche_salle(etage+1,numero_salle,day,heure,minute) == 0){
-					// 		etage_1[index_etage1] = numero_salle; //nous somme oblige de faire cela car numero salle varie de 100 a 120 
-					// 		//or dans les etages nous modifions le numero de salle de 100 en 100 donc si nous passons a l'etage 2 soit etage = 1 dans le programme alors 
-					// 		nb_tache1++;	
-					// 	}		
-					// 	index_etage1++;				
-					// 	break;
-
-					// case 2:
-					// 	//rechercher la dispo de toutes les salles pour l'etage 2
-					// 	if(recherche_salle(etage,numero_salle,day,heure,minute) == 0){
-					// 		etage_2[index_etage2] = numero_salle;	
-					// 		nb_tache2++;	
-					// 	}		
-					// 	index_etage2++;				
-					// 	break;
-
-					// case 3:
-					// 	//recherche la dispo de toutes les salles de l'etage 3
-					// 	if(recherche_salle(etage,numero_salle,day,heure,minute) == 0){
-					// 		etage_3[index_etage3] = numero_salle;	
-					// 		nb_tache3++;	
-					// 	}		
-					// 	index_etage3++;				
-					// 	break;
-					
-					// default:
-					// 	break;
-					// }  
 				}
 			}
 		}
