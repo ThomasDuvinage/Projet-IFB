@@ -6,11 +6,24 @@
 //  Copyright © 2019 Thomas Duvinage. All rights reserved.
 //
 
+/**
+ * @file main.c
+ * @author your name (you@domain.com)
+ * @brief 
+ * @version 0.1
+ * @date 2019-05-04
+ * 
+ * @copyright Copyright (c) 2019
+ * 
+ */
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
 #include <stdbool.h>
+
+#include "../lib/generate_timetable/generation_timetable.h"
 
 #define true 1
 #define false 0
@@ -20,6 +33,14 @@ char nom_pswd[20][45];
 
 
 //DECLARATIONS DES FONCTIONS
+
+/**
+ * @brief Cette fonction me fait chier
+ * 
+ * @param nom_pswd 
+ * @return true 
+ * @return false 
+ */
 bool identification(char nom_pswd[20][45]);//on declare la fonction
 void lecture_identifiant(char nom_pswd[20][45],int* nb_employe);
 int creation_agent(char nom_pswd[20][45], int* nb_employe);
