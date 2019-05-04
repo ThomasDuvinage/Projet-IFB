@@ -21,8 +21,8 @@
  * @return true 
  * @return false 
  */
-bool identification();//on declare la fonction
-void lecture_identifiant(char* nom_pswd[20][45],int* nb_employe);
-int creation_agent(char* nom_pswd[20][45], int* nb_employe);
+bool identification();
+void lecture_identifiant	(char(*nom_pswd)[20][45],	int* nb_employe);
+int  creation_agent			(char(*nom_pswd)[20][45],	int* nb_employe);
 
 #endif

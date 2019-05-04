@@ -77,7 +77,7 @@ bool identification(){
 // ****** FIN DE LA BOUCLE IDENTIFICATION ******
 
 // ******* DEBUT FONCTION DE LECTURE FICHIER *********
-void lecture_identifiant(char* nom_pswd[20][45], int* nb_employe){
+void lecture_identifiant(char(*nom_pswd)[20][45], int* nb_employe){
     char buffer[BSIZE];
 	FILE *f;
 	char *field;
@@ -120,7 +120,7 @@ void lecture_identifiant(char* nom_pswd[20][45], int* nb_employe){
 
 
 //cette fonction me permet de creer un agent en l'ajoutant dans le fichier 
-int creation_agent(char* nom_pswd[20][45], int* nb_employe){
+int creation_agent(char(*nom_pswd)[20][45], int* nb_employe){
     FILE *f;
     char nom[20];
     char pwd[20];
@@ -134,9 +134,9 @@ int creation_agent(char* nom_pswd[20][45], int* nb_employe){
     scanf("%s",pwd);
     printf("\n");
 
-    strncpy(nom_pswd[*nb_employe],nom,strlen(nom));
-    strncpy(nom_pswd[*nb_employe+1],pwd,strlen(pwd));
-    strcat(nom_pswd[*nb_employe+1],"\n");
+    strncpy(*nom_pswd[*nb_employe],nom,strlen(nom));
+    strncpy(*nom_pswd[*nb_employe+1],pwd,strlen(pwd));
+    strcat(*nom_pswd[*nb_employe+1],"\n");
 
     //on passe en mode ecriture de fichier, cela permet de remplacer les valeurs dans le tableau et apres de les inseres dans le fichier
 	f = fopen("identifiants.csv","w");
