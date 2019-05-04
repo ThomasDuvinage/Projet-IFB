@@ -174,6 +174,7 @@ int creation_agent(char nom_pswd[20][45], int* nb_employe){
 
     strncpy(nom_pswd[*nb_employe],nom,strlen(nom));
     strncpy(nom_pswd[*nb_employe+1],pwd,strlen(pwd));
+    strcat(nom_pswd[*nb_employe+1],"\n");
 
     //on passe en mode ecriture de fichier, cela permet de remplacer les valeurs dans le tableau et apres de les inseres dans le fichier
 	f = fopen("identifiants.csv","w");
@@ -183,7 +184,7 @@ int creation_agent(char nom_pswd[20][45], int* nb_employe){
 	//on fait une boucle pour remplir le fichier 
 	for(int i = 0; i < *nb_employe; i=i+2)
 	{
-		fprintf(f,"%s,%s\n",nom_pswd[i],nom_pswd[i+1]);//on ecrit dans le fichier les valeurs du tableau que nous avons modofié ou non 
+		fprintf(f,"%s,%s",nom_pswd[i],nom_pswd[i+1]);//on ecrit dans le fichier les valeurs du tableau que nous avons modofié ou non 
     }
 	
 	fclose(f);
