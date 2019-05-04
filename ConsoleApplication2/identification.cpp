@@ -106,8 +106,8 @@ void lecture_identifiant(char(*nom_pswd)[20][45], int* nb_employe){
         //printf("%s",pwd);
 
 		//les 2 lignes suivantes permettent de remplir le tableau des valeurs lues
-		strcpy(*nom_pswd[i],nom);
-		strcpy(*nom_pswd[i+1],pwd);
+		strncpy(*nom_pswd[i],nom,strlen(*nom_pswd[i]));
+		strncpy(*nom_pswd[i+1],pwd,strlen(*nom_pswd[i]));
 
 		i=i+2;//on incremente le cursueur 
 

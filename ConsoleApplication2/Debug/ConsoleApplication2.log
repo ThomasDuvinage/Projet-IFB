@@ -1,13 +1,2 @@
 ﻿  identification.cpp
-c:\users\jules\source\repos\consoleapplication2\consoleapplication2\identification.cpp(18): error C2664: 'void lecture_identifiant(char *[][45],int *)' : impossible de convertir l'argument 1 de 'char (*)[20][45]' en 'char *[][45]'
-  c:\users\jules\source\repos\consoleapplication2\consoleapplication2\identification.cpp(18): note: Les types pointés n'ont aucun rapport entre eux ; conversion nécessitant reinterpret_cast, cast de style C ou cast de style fonction
-c:\users\jules\source\repos\consoleapplication2\consoleapplication2\identification.cpp(57): error C2664: 'int creation_agent(char *[][45],int *)' : impossible de convertir l'argument 1 de 'char (*)[20][45]' en 'char *[][45]'
-  c:\users\jules\source\repos\consoleapplication2\consoleapplication2\identification.cpp(57): note: Les types pointés n'ont aucun rapport entre eux ; conversion nécessitant reinterpret_cast, cast de style C ou cast de style fonction
-c:\users\jules\source\repos\consoleapplication2\consoleapplication2\identification.cpp(137): error C2664: 'char *strncpy(char *,const char *,size_t)' : impossible de convertir l'argument 1 de 'char *[45]' en 'char *'
-  c:\users\jules\source\repos\consoleapplication2\consoleapplication2\identification.cpp(137): note: Les types pointés n'ont aucun rapport entre eux ; conversion nécessitant reinterpret_cast, cast de style C ou cast de style fonction
-c:\users\jules\source\repos\consoleapplication2\consoleapplication2\identification.cpp(138): error C2664: 'char *strncpy(char *,const char *,size_t)' : impossible de convertir l'argument 1 de 'char *[45]' en 'char *'
-  c:\users\jules\source\repos\consoleapplication2\consoleapplication2\identification.cpp(138): note: Les types pointés n'ont aucun rapport entre eux ; conversion nécessitant reinterpret_cast, cast de style C ou cast de style fonction
-c:\users\jules\source\repos\consoleapplication2\consoleapplication2\identification.cpp(139): error C2664: 'char *strcat(char *,const char *)' : impossible de convertir l'argument 1 de 'char *[45]' en 'char *'
-  c:\users\jules\source\repos\consoleapplication2\consoleapplication2\identification.cpp(139): note: Les types pointés n'ont aucun rapport entre eux ; conversion nécessitant reinterpret_cast, cast de style C ou cast de style fonction
-c:\users\jules\source\repos\consoleapplication2\consoleapplication2\identification.cpp(149): warning C4477: 'fprintf' : la chaîne de format '%s' nécessite un argument de type 'char *', mais l'argument variadique 1 est de type 'char **'
-c:\users\jules\source\repos\consoleapplication2\consoleapplication2\identification.cpp(149): warning C4477: 'fprintf' : la chaîne de format '%s' nécessite un argument de type 'char *', mais l'argument variadique 2 est de type 'char **'
+  ConsoleApplication2.vcxproj -> C:\Users\jules\Documents\GitHub\Projet-IFB\Debug\ConsoleApplication2.exe
