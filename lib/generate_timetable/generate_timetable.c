@@ -1,12 +1,5 @@
 #include "generation_timetable.h"
 
-/*
-int main()
-{
-	generate(nb_employe,DISPO_E1,DISPO_E2,DISPO_E3);
-	
-}
-*/
 
 void generate(int nb_employe,int DISPO_E1[],int DISPO_E2[],int DISPO_E3[]){
 	char buffer[BSIZE];

@@ -1,17 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
-#define BSIZE 80
-
-int recherche_salle(int etage,int numero_salle,char jour[10],int heure,int minute);
-
-int main(){
-
-    printf("%d",recherche_salle(1,119,"Friday",9,30));
-
-}
-
+#include "recherche_salle.h"
 
 int recherche_salle(int etage,int numero_salle,char jour[10],int heure,int minute){//les minutes --> 0, 15, 30, 45
     char buffer[BSIZE];

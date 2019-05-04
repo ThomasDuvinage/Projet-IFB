@@ -1,14 +1,6 @@
-//
-//  main.c
-//  PROJECT
-//
-//  Created by Thomas Duvinage on 18/04/2019.
-//  Copyright © 2019 Thomas Duvinage. All rights reserved.
-//
-
 /**
  * @file main.c
- * @author your name (you@domain.com)
+ * @Duvinage Thomas (thomas.duvinage@utbm.fr)
  * @brief 
  * @version 0.1
  * @date 2019-05-04
@@ -24,6 +16,8 @@
 #include <stdbool.h>
 
 #include "../lib/generate_timetable/generation_timetable.h"
+#include "../lib/recherche_salle/recherche_salle.h"
+#include "../lib/Validation/validation.h"
 
 #define true 1
 #define false 0
@@ -47,9 +41,6 @@ int creation_agent(char nom_pswd[20][45], int* nb_employe);
 
 // ****** MAIN ******
 int main(int argc, const char * argv[]) {
-    // insert code here...
-    //printf("%lu",strlen(nom_pswd));
-    
     if(identification(nom_pswd) == true){
         printf("BIENVENUE SUR NOTRE PLATFORME \n");
     }
