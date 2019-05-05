@@ -1,7 +1,8 @@
 #include "identification.h"
+#include "buffer.h"
+
 
 char namePassBuffer[45][20];
-
 
 // ********  BOUCLE IDENTIFICATION  **********
 bool identification(){
