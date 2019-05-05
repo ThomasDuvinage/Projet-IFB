@@ -1,7 +1,11 @@
 #include "validation.h"
+#include "../buffer.h"
 
+char chemin_fichier[50] = "csv_files/etage_";//aller voir buffer.h pour la declaration de la variable
 
-int modif_etat(char nom_salle[10]){
+int modif_etat(){
+	generation_chemin();//on appelle la fonction de generation de chemin voir plus bas dans le code 
+
 	char buffer[BSIZE];
 	FILE *f;
 	char *field;
@@ -14,11 +18,11 @@ int modif_etat(char nom_salle[10]){
 	int i = 0; //curseur permettant de remplir le tableau des dispos_j
 
 	/* open the CSV file */
-	f = fopen(nom_salle,"r");
+	f = fopen(chemin_fichier,"r");
 
 	if( f == NULL)//si on arrive pas a ouvrir on affiche un message 
 	{
-		printf("Impossible d'ouvrir le fichier '%s'\n",nom_salle);
+		printf("Impossible d'ouvrir le fichier '%s'\n",chemin_fichier);
 		exit(1);
 	}
 
@@ -58,7 +62,7 @@ int modif_etat(char nom_salle[10]){
 	
 
 	//on passe en mode ecriture de fichier, cela permet de remplacer les valeurs dans le tableau et apres de les inseres dans le fichier
-	f = fopen(nom_salle,"w");
+	f = fopen(chemin_fichier,"w");
 
 	//on fait une boucle pour remplir le fichier 
 	for(int i = 0; i < 40; i=i+4)//40 correspond au nombre de valeur car on fait de 8h a 18h donc 4*10 valeurs 
@@ -69,4 +73,43 @@ int modif_etat(char nom_salle[10]){
 	fclose(f);
 
 	return(0);
+}
+
+
+void generation_chemin(){// voir le fichier validation.h pour les explications de la fonction
+	char nb_salle[12]; // on creer une chaine de caracteres qui va permettre de recevoir le numero de la salle en caracteres
+    char numero_etage[5];// permet d'acceuilir la convertion de int vers char de numero etage 
+    int numero_salle,etage;// declaration des variables 
+	
+    // ****************** Utilisation du temps (voir time_example)
+	char jour[128];//declaration de la chaine de caractere qui permet d'acceuillir le jour (Monday,..)  
+    time_t temps;
+    struct tm date;
+
+    // On récupère la date et l'heure actuelles.
+    time(&temps);
+    date=*localtime(&temps);
+
+    // On remplit la chaîne avec le format choisi, puis on l'affiche.
+    strftime(jour, 128, "%A", &date);//le %A permet d'avoir le jour sous le format Monday,...
+	//*******************
+
+	printf("Quelle salle voulez-vous valider ? \n");
+	scanf("%d",&numero_salle);
+
+	//les deux lignes qui suivent devront etre suprimer afin que la personne donne juste la salle et on calcul l'etage 
+	printf("A quel étage etes vous ?\n");
+	scanf("%d",&etage);
+
+	sprintf(numero_etage, "%d",etage);//on convertit l'entier numero salle en char dans la chaine de caracteres nb_salle
+    strcat(chemin_fichier,numero_etage );
+    strcat(chemin_fichier,"/");
+    strcat(chemin_fichier,jour);
+    strcat(chemin_fichier,"/");
+    strcat(chemin_fichier,"p");
+
+    sprintf(nb_salle, "%d", numero_salle);//on convertit l'entier numero salle en char dans la chaine de caracteres nb_salle
+    strcat(chemin_fichier,nb_salle); //on concatene les deux chaines de caracteres
+    strcat(chemin_fichier,".csv"); //on ajoute la description du fichier
+
 }

@@ -1,7 +1,10 @@
 #include "identification.h"
 #include "../buffer.h"
 
-
+/**
+ * @brief Cette chaine de caractere permet d'acceuilir les ID et PWD de tous les agents. Nous ne la mettons pas en parametres des fonctions car nous l'avons declarer comme extern dans buffer.h
+ * 
+ */
 char namePassBuffer[45][20];
 
 // ********  BOUCLE IDENTIFICATION  **********
@@ -137,6 +140,10 @@ int creation_agent(int* nb_employe){
     scanf("%s",pwd);
     printf("\n");
 
+    /**
+     * @brief Construct a new strncpy object permet de coper pour un certain nombre de caracteres une chaine de caracteres dans une autre
+     * 
+     */
     strncpy(namePassBuffer[*nb_employe],nom,strlen(nom));
     strncpy(namePassBuffer[*nb_employe+1],pwd,strlen(pwd));
     strcat(namePassBuffer[*nb_employe+1],"\n");

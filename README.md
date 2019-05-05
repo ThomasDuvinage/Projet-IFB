@@ -11,9 +11,9 @@ Pour compiler ce projet en ligne de commande vous devez taper :
 
 #### gcc -g main.c identification.c ... -o projet.app 
 
-Les (...) correspondent à tous les autres fichiers .c de votre projet que vous avez besoins pour que le projet main.c fonctionne. 
+Les (...) correspondent à tous les autres fichiers .c de votre projet dont vous avez besoin pour que le projet main.c fonctionne. 
 
-Très important pour faire cela vous devez faire en sorte que le .h soit lu qu'une seule fois donc vous devez ajouter : (exemple avec identification.h)
+Très important pour faire cela vous devez faire en sorte que le .h ne soit lu qu'une seule fois donc vous devez ajouter : (exemple avec identification.h)
 
 ````
 ///Tout en haut de votre .h
@@ -45,7 +45,7 @@ Celle-ci vous permet d'utiliser les commentaires que vous faites dans le code af
 
  - Ensuite dans Visual Code Studio Preférences/Extentions et tapez Doxygen Documentation 
 
- L'icône correspondante et des lignes de code :)
+ L'icône correspondante représente des lignes de code :)
 
 Ensuite il ne vous reste plus qu'à commenter et ouvrir le logiciel suivre les instructions qui vous sont demandées et enjoy 
 

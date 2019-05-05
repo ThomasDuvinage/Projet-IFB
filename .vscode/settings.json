@@ -6,6 +6,7 @@
         "validation.h": "c",
         "generation_timetable.h": "c",
         "function_identification": "c",
-        "coucou.h": "c"
+        "coucou.h": "c",
+        "buffer.h": "c"
     }
 }
