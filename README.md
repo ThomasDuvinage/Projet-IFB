@@ -43,7 +43,7 @@ Celle-ci vous permet d'utiliser les commentaires que vous faites dans le code af
 
  Puis télécharger en fonction de votre OS le logiciel 
 
- - Ensuite dans Visual Code Studio Preférences/Extentions et tappez Doxygen Documentation 
+ - Ensuite dans Visual Code Studio Preférences/Extentions et tapez Doxygen Documentation 
 
  L'icône correspondante et des lignes de code :)
 
