@@ -9,7 +9,7 @@ Par exemple l’agent de ménage rentre son identifiant et on lui génère la li
 ## Pour compiler: 
 Pour compiler ce projet en ligne de commande vous devez taper :
 
-** gcc -g main.c identification.c ... -o projet.app **
+#### gcc -g main.c identification.c ... -o projet.app 
 
 Les (...) correspondent à tous les autres fichiers .c de votre projet que vous avez besoins pour que le projet main.c fonctionne. 
 
