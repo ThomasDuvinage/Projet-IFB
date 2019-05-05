@@ -2,6 +2,7 @@
 #include "../buffer.h"
 
 char chemin_fichier[50] = "csv_files/etage_";//aller voir buffer.h pour la declaration de la variable
+int numero_salle,etage;// declaration des variables 
 
 int modif_etat(){
 	generation_chemin();//on appelle la fonction de generation de chemin voir plus bas dans le code 
@@ -57,9 +58,7 @@ int modif_etat(){
 	/* close file */
 	fclose(f);//on ferme la boucle de lecture de fichier 
 
-	//il faut remplacer à cette endroit les valeurs du tableau afin de les remettre dans le fichier 
-
-	
+	//TODO il faut remplacer à cette endroit les valeurs du tableau afin de les remettre dans le fichier 
 
 	//on passe en mode ecriture de fichier, cela permet de remplacer les valeurs dans le tableau et apres de les inseres dans le fichier
 	f = fopen(chemin_fichier,"w");
@@ -79,7 +78,6 @@ int modif_etat(){
 void generation_chemin(){// voir le fichier validation.h pour les explications de la fonction
 	char nb_salle[12]; // on creer une chaine de caracteres qui va permettre de recevoir le numero de la salle en caracteres
     char numero_etage[5];// permet d'acceuilir la convertion de int vers char de numero etage 
-    int numero_salle,etage;// declaration des variables 
 	
     // ****************** Utilisation du temps (voir time_example)
 	char jour[128];//declaration de la chaine de caractere qui permet d'acceuillir le jour (Monday,..)  
