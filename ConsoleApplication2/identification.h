@@ -1,6 +1,4 @@
-#ifndef IDENTIFICATION_H_
-#define IDENTIFICATION_H_
-
+#pragma once
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -11,6 +9,8 @@
 
 #define BSIZE 80
 
+
+extern char namePassBuffer[45][20];
 
 //DECLARATIONS DES FONCTIONS
 
@@ -26,9 +26,7 @@ bool
 identification();
 
 void 
-lecture_identifiant	(char(*nom_pswd)[20][45],	int* nb_employe);
+lecture_identifiant		(int* nb_employe);
 
 int  
-creation_agent			(char(*nom_pswd)[20][45],	int* nb_employe);
-
-#endif
+creation_agent			(int* nb_employe);

@@ -1,8 +1,10 @@
 #include "identification.h"
 
+char namePassBuffer[45][20];
+
+
 // ********  BOUCLE IDENTIFICATION  **********
 bool identification(){
-	char nom_pswd[20][45];//cette chaine de caractere permet de contenir le nom et pwd
     int i; //curseur pour la verification lors de l'autentification
     bool check = false; //on definit check comme false comme ca la boucle d'identification va se mettre en marche tant que la personne n'a pas donnee les bon identifiant et mot de passe
     char ask_retry = 'r';//on definit le retry comme au debut cela permet de rentrer dans la fonction 
@@ -15,7 +17,7 @@ bool identification(){
     do {
         if(ask_retry == 'r'){
 
-            lecture_identifiant(&nom_pswd,&nb_employe);//dans cette fonction nous remplissons le tableau nom_pswd de tous les ID et PWD puis nous mettons a jour la valeur du nombre d'emploie a l'aide des pointeurs
+            lecture_identifiant(&nb_employe);//dans cette fonction nous remplissons le tableau nom_pswd de tous les ID et PWD puis nous mettons a jour la valeur du nombre d'emploie a l'aide des pointeurs
 
             //on fait l'affichage pour la connexion
             printf(" ==== IDENTIFICATION ==== \n");
@@ -45,7 +47,7 @@ bool identification(){
                 //printf("%s %s \n",nom_pswd[i],nom_pswd[i+1]);
 
                 //strncmp permet de comparer pour un certain nombre de caractere soit la longueur du nom ou du pwd donné 
-                if(strncmp(nom_entre,nom_pswd[i],strlen(nom_entre))==0 && strncmp(psw_entre, nom_pswd[i+1],strlen(psw_entre))==0){
+                if(strncmp(nom_entre, namePassBuffer[i],strlen(nom_entre))==0 && strncmp(psw_entre, namePassBuffer[i+1],strlen(psw_entre))==0){
                     check = true;
                 }
             }
@@ -54,7 +56,7 @@ bool identification(){
 
         if(ask_retry == 'c' && create_info == 0)
         {
-            creation_agent(&nom_pswd,&nb_employe);
+            creation_agent(&nb_employe);
             create_info = 1;
             ask_retry = 'r';
         }
@@ -77,7 +79,7 @@ bool identification(){
 // ****** FIN DE LA BOUCLE IDENTIFICATION ******
 
 // ******* DEBUT FONCTION DE LECTURE FICHIER *********
-void lecture_identifiant(char(*nom_pswd)[20][45], int* nb_employe){
+void lecture_identifiant(int* nb_employe){
     char buffer[BSIZE];
 	FILE *f;
 	char *field;
@@ -106,8 +108,8 @@ void lecture_identifiant(char(*nom_pswd)[20][45], int* nb_employe){
         //printf("%s",pwd);
 
 		//les 2 lignes suivantes permettent de remplir le tableau des valeurs lues
-		strncpy(*nom_pswd[i],nom,strlen(*nom_pswd[i]));
-		strncpy(*nom_pswd[i+1],pwd,strlen(*nom_pswd[i]));
+		strncpy(namePassBuffer[i],nom,strlen(nom));
+		strncpy(namePassBuffer[i+1],pwd,strlen(pwd));
 
 		i=i+2;//on incremente le cursueur 
 
@@ -120,7 +122,7 @@ void lecture_identifiant(char(*nom_pswd)[20][45], int* nb_employe){
 
 
 //cette fonction me permet de creer un agent en l'ajoutant dans le fichier 
-int creation_agent(char(*nom_pswd)[20][45], int* nb_employe){
+int creation_agent(int* nb_employe){
     FILE *f;
     char nom[20];
     char pwd[20];
@@ -134,9 +136,9 @@ int creation_agent(char(*nom_pswd)[20][45], int* nb_employe){
     scanf("%s",pwd);
     printf("\n");
 
-    strncpy(*nom_pswd[*nb_employe],nom,strlen(nom));
-    strncpy(*nom_pswd[*nb_employe+1],pwd,strlen(pwd));
-    strcat(*nom_pswd[*nb_employe+1],"\n");
+    strncpy(namePassBuffer[*nb_employe],nom,strlen(nom));
+    strncpy(namePassBuffer[*nb_employe+1],pwd,strlen(pwd));
+    strcat(namePassBuffer[*nb_employe+1],"\n");
 
     //on passe en mode ecriture de fichier, cela permet de remplacer les valeurs dans le tableau et apres de les inseres dans le fichier
 	f = fopen("identifiants.csv","w");
@@ -146,7 +148,7 @@ int creation_agent(char(*nom_pswd)[20][45], int* nb_employe){
 	//on fait une boucle pour remplir le fichier 
 	for(int i = 0; i < *nb_employe; i=i+2)
 	{
-		fprintf(f,"%s,%s",nom_pswd[i],nom_pswd[i+1]);//on ecrit dans le fichier les valeurs du tableau que nous avons modofié ou non 
+		fprintf(f,"%s,%s", namePassBuffer[i], namePassBuffer[i+1]);//on ecrit dans le fichier les valeurs du tableau que nous avons modofié ou non 
     }
 	
 	fclose(f);
