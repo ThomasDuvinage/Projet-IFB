@@ -33,3 +33,21 @@ Très important pour faire cela vous devez faire en sorte que le .h soit lu qu'u
 - Sur Windows : gcc -g ... -o projet.exe
 
 
+## Doxygen
+
+J'ai decouvert cette extension grace à Jules Topart :)
+
+Celle-ci vous permet d'utiliser les commentaires que vous faites dans le code afin de générer une page html automatiquement cela peut donc être très utile pour faire des rapports de stage ou de la documentation ;) 
+
+ - Pour cela vous devez aller sur le site de Doxygen <http://www.doxygen.nl/download.html> 
+
+ Puis télécharger en fonction de votre OS le logiciel 
+
+ - Ensuite dans Visual Code Studio Preférences/Extentions et tappez Doxygen Documentation 
+
+ L'icône correspondante et des lignes de code :)
+
+Ensuite il ne vous reste plus qu'à commenter et ouvrir le logiciel suivre les instructions qui vous sont demandées et enjoy 
+
+
+
