@@ -6,7 +6,7 @@ Notre projet consiste en une application qui va aider les agents de ménages dan
 Par exemple l’agent de ménage rentre son identifiant et on lui génère la liste des salles qu'il doit nettoyer avec les horaires. Cela va non seulement optimiser le nettoyage mais aussi diminuer le temps de travail.
 
 
-##Pour compiler: 
+## Pour compiler: 
 Pour compiler ce projet en ligne de commande vous devez taper :
 
 ** gcc -g main.c identification.c ... -o projet.app **
@@ -26,7 +26,7 @@ Très important pour faire cela vous devez faire en sorte que le .h soit lu qu'u
 
 ````
 
-##IMPORTANT
+## IMPORTANT
 
 - Sur Linux et MacOS : gcc -g ... -o projet.app
 
