@@ -90,11 +90,11 @@ void lecture_identifiant(int* nb_employe){
 	int i = 0; //curseur permettant de remplir le tableau des dispos_j
 
 	/* open the CSV file */
-	f = fopen("identifiants.csv","r");
+	f = fopen("csv_files/ID.csv","r");
 
 	if( f == NULL)//si on arrive pas a ouvrir on affiche un message 
 	{
-		printf("Impossible d'ouvrir le fichier identifiants.csv \n ");
+		printf("Impossible d'ouvrir le fichier ID.csv \n");
 		exit(1);
 	}
 
@@ -142,7 +142,7 @@ int creation_agent(int* nb_employe){
     strcat(namePassBuffer[*nb_employe+1],"\n");
 
     //on passe en mode ecriture de fichier, cela permet de remplacer les valeurs dans le tableau et apres de les inseres dans le fichier
-	f = fopen("identifiants.csv","w");
+	f = fopen("csv_files/ID.csv","w");
 
     *nb_employe = *nb_employe + 2;
 
