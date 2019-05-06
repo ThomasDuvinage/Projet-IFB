@@ -4,6 +4,8 @@
 char nom_salle[50] = "csv_files/etage_";//cette variable est declarer en extren dans le fichier buffer.h
 
 int recherche_salle(int etage,int numero_salle,char jour[10],int heure,int minute){//les minutes --> 0, 15, 30, 45
+    char nom_salle[50] = "csv_files/etage_";//cette variable est declarer en extren dans le fichier buffer.h
+
     char buffer[BSIZE];
     FILE *f;
     char *field;
@@ -12,7 +14,7 @@ int recherche_salle(int etage,int numero_salle,char jour[10],int heure,int minut
     int DISPO_J[40]= {0}; //tableau qui permet d'acceuillir toutes les valeurs que nous lisons du fichier
     //cela permet de pouvoir modifier le tableau puis de le l'ecrire par la suite dans le fichier
 
-    int n = 8;//curseur permettant d'afficher l'heure dans l'affichage
+    //int n = 8;//curseur permettant d'afficher l'heure dans l'affichage
     int i = 0; //curseur permettant de remplir le tableau des dispos_j
  
     char nb_salle[12]; // on creer une chaine de caracteres qui va permettre de recevoir le numero de la salle en caracteres
