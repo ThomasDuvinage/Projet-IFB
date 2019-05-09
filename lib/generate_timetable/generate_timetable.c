@@ -121,7 +121,6 @@ int get_nday(char day[128],char week[7][120]){
 	//printf("%d",strncmp(day,week[3],strlen(week[3])));
 	while (strncmp(day, week[i],strlen(week[i])) != 0)
 	{
-		printf("coucou\n");
 		i++;
 	} 
 
