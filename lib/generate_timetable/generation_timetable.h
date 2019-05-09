@@ -10,6 +10,19 @@
 
 #define NB_SIZE 100
 
+
+/**
+ * @brief Get the nday object
+ * 
+ * @param day 
+ * @param week 
+ * @return int 
+ */
+
+int 
+get_nday(char day[128],char week[7][120]);
+
+
 /**
  * @brief Cette fonction permet de génerer l'emploi du temps de chaque personne 
  * 

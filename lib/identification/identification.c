@@ -6,6 +6,7 @@
  * 
  */
 char namePassBuffer[45][20];
+int nombre_agent;
 
 // ********  BOUCLE IDENTIFICATION  **********
 bool identification(){
@@ -63,6 +64,7 @@ bool identification(){
             creation_agent(&nb_employe);
             create_info = 1;
             ask_retry = 'r';
+
         }
         
         if (check == false && create_info == 0)
@@ -75,6 +77,7 @@ bool identification(){
         }
         
     }while (check != true);
+
     
     
     return true;
@@ -89,6 +92,7 @@ void lecture_identifiant(int* nb_employe){
 	char *field;
 	char nom[20],pwd[20];
 
+    nombre_agent = 0;
 
 	int i = 0; //curseur permettant de remplir le tableau des dispos_j
 
@@ -116,6 +120,7 @@ void lecture_identifiant(int* nb_employe){
 		strncpy(namePassBuffer[i+1],pwd,strlen(pwd));
 
 		i=i+2;//on incremente le cursueur 
+        nombre_agent++;
 
 	}
 
@@ -146,20 +151,32 @@ int creation_agent(int* nb_employe){
      */
     strncpy(namePassBuffer[*nb_employe],nom,strlen(nom));
     strncpy(namePassBuffer[*nb_employe+1],pwd,strlen(pwd));
-    strcat(namePassBuffer[*nb_employe+1],"\n");
+    //strcat(namePassBuffer[*nb_employe+1],"\n");
 
     //on passe en mode ecriture de fichier, cela permet de remplacer les valeurs dans le tableau et apres de les inseres dans le fichier
 	f = fopen("csv_files/ID.csv","w");
-
-    *nb_employe = *nb_employe + 2;
 
 	//on fait une boucle pour remplir le fichier 
 	for(int i = 0; i < *nb_employe; i=i+2)
 	{
 		fprintf(f,"%s,%s", namePassBuffer[i], namePassBuffer[i+1]);//on ecrit dans le fichier les valeurs du tableau que nous avons modofié ou non 
     }
+
+    fprintf(f,"\n%s,%s", namePassBuffer[*nb_employe], namePassBuffer[*nb_employe+1]);
 	
 	fclose(f);
+
+    FILE *agenda_personnel;
+    char numero_agent[3];
+    char chemin_agent[50] = "csv_files/agents/";
+    sprintf(numero_agent, "%d",nombre_agent);
+    strcat(chemin_agent,numero_agent);
+    strcat(chemin_agent,"_");
+    strcat(chemin_agent,nom);
+    strcat(chemin_agent,".csv");
+    agenda_personnel = fopen(chemin_agent,"w");
+
+    fclose(agenda_personnel);
 
     return 0;
 }

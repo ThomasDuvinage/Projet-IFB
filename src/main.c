@@ -11,14 +11,12 @@
 
 // ****** MAIN ******
 int main() {
-    //printf("%d\n",recherche_salle(2,219,"Friday",8,15));
-
 	generate();
 
 
-	// if (identification()) {
-	// 	printf("BIENVENUE SUR NOTRE PLATFORME \n");
-	// }
+	if (identification()) {
+		printf("BIENVENUE SUR NOTRE PLATFORME \n");
+	}
 
 	return 0;
 }

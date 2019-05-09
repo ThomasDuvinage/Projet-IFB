@@ -8,7 +8,7 @@
  * 
  */
 extern char namePassBuffer[45][20];//utilisée dans tous les fichiers identifications 
-
+extern int nombre_agent;
 //RECHERCHER SALLE
 extern char nom_salle[50]; //utilisée dans la fonction de recherche de salle 
 
