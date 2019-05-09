@@ -24,12 +24,13 @@ void generate(){
 	 * @brief ces tableaux d'entier permettent de stocker les salles qui doivent etre nettoyer
 	 * 
 	 */
-	int etage_1[100]={0}, etage_2[100]= {0},etage_3[100]={0};
+	int etage_1[200]={0}, etage_2[200]= {0},etage_3[200]={0};
 	int index_etage1 = 0, index_etage2 = 0, index_etage3 = 0;
 	int nb_tache1 = 0,nb_tache2 = 0, nb_tache3 = 0;
 	int jour,heure,minute,etage,numero_salle,salle;
 
-	for(jour = index_jour; jour<5; jour++){
+	for(jour = index_jour; jour<5; jour++)
+	{
 		for(heure = 8; heure <= 18;heure++)//pour chaque heure de la journee nous remplisons les salles disponibles
 		{
 			for(minute = 0; minute <= 45; minute += 15)
@@ -93,10 +94,13 @@ void generate(){
 		}
 	}
 
-	for (int i = 0; i < 90; i++)
+	//cette boucle permet d'afficher toutes les salles disponibles chaque 1/4h
+	for (int i = 0; i < 200; i++)
 	{
 		/* code */
-		printf("salle a nettoyer : %D \n",etage_1[i]);
+		printf("salle a nettoyer ETAGE 1: %D   ",etage_1[i]);
+		printf("salle a nettoyer ETAGE 2: %D   ",etage_2[i]);
+		printf("salle a nettoyer ETAGE 3: %D \n",etage_3[i]);
 	}
 	
 	
@@ -114,13 +118,12 @@ void generate(){
  */
 int get_nday(char day[128],char week[7][120]){
 	int i = 0;
-	do
+	//printf("%d",strncmp(day,week[3],strlen(week[3])));
+	while (strncmp(day, week[i],strlen(week[i])) != 0)
 	{
+		printf("coucou\n");
 		i++;
-	} while (day != week[i]);
+	} 
 
 	return i;
 }
-
-
-
