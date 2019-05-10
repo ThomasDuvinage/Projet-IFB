@@ -1,8 +1,8 @@
 #include "agents_modif.h"
 #include "../buffer.h"
 
-int karma[20] = {0};
-int temps_travail[20] = {0};
+int karma[20] = {0,10,3,4,8,9,2,7};
+int temps_travail[20] = {0,10,3,4,8,9,2,7};
 
 /**
  * @brief Cette fonciton va permettre de retourner l'index de l'agent qui a le plus petit karma
@@ -23,47 +23,24 @@ void choix_agent(){
         agents_karma[i] = i;
         agents_travail[i] = i;
 
-        printf("%d  ",agents_karma[i]);
-        printf("%d  \n",agents_travail[i]);
-
     }
-    printf("\n");
 
-    //boucle de tri poir les karmas
-    for(int k = 0; k < nombre_agent; k++){
-        minimum_karma = karma[k];
-        index_min = k;
-        for(int n=k+1; n < nombre_agent;n++){
-            if(minimum_karma > karma[n]){
-                index_min = n;
+    int i,j,c;
+    for(i=0;i<nombre_agent-1;i++){
+        for(j=i+1;j<nombre_agent;j++){
+            if ( karma[i] > karma[j] ) {
+                c = karma[i];
+                karma[i] = karma[j];
+                karma[j] = c;
             }
-            agents_karma[k] = index_min;
+        }
+        for(int p = 0; p < nombre_agent; p++){
+            printf("%d    ",karma[p]);
+            printf("%d \n",agents_karma[p]);
         }
 
-        for(int o = index_min; o<(nombre_agent-k);o++){
-            karma[o] = karma[o+1];
-        }
-    }
-
-    //boucle de tri pour les temps de travail
-    for(int k = 0; k < nombre_agent; k++){
-        minimum_travail = temps_travail[k];
-        index_min = k;
-        for(int n=k+1; n < nombre_agent;n++){
-            if(minimum_travail> temps_travail[n]){
-                index_min = n;
-            }
-            agents_travail[k] = index_min;
-        }
-
-        for(int o = index_min; o<(nombre_agent-k);o++){
-            temps_travail[o] = temps_travail[o+1];
-        }
-    }
-
-    for(int p = 0; p < nombre_agent; p++){
-        printf("%d  ",agents_karma[p]);
-        printf("%d  \n",agents_travail[p]);
+        printf("k = %d\n",i);
+        printf("\n");  
     }
     
 }
