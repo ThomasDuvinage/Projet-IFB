@@ -2,7 +2,7 @@
 #include "../buffer.h"
 
 int karma[20] = {0,10,3,4,8,9,2,7};
-int temps_travail[20] = {0,10,3,4,8,9,2,7};
+int temps_travail[20] = {0,10,3,4,88,9,2,7};
 
 /**
  * @brief Cette fonciton va permettre de retourner l'index de l'agent qui a le plus petit karma
@@ -18,25 +18,53 @@ void choix_agent(){
     int agents_karma[20] = {0};
     int agents_travail[20] = {0};
 
-
+    //on genere les tableaux pour les agents
     for(int i = 0; i<nombre_agent ; i++){
         agents_karma[i] = i;
         agents_travail[i] = i;
 
     }
 
-    int i,j,c;
-    for(i=0;i<nombre_agent-1;i++){
-        for(j=i+1;j<nombre_agent;j++){
+    //on tri les karmas du plus petit au plus grand
+    for(int i=0;i<nombre_agent-1;i++){
+        for(int j=i+1;j<nombre_agent;j++){
             if ( karma[i] > karma[j] ) {
-                c = karma[i];
+                int tampon_tri = karma[i];
+                int tampon_agent = agents_karma[i];
+
+                agents_karma[i] = agents_karma[j];
                 karma[i] = karma[j];
-                karma[j] = c;
+
+                agents_karma[j] = tampon_agent;
+                karma[j] = tampon_tri;
             }
         }
         for(int p = 0; p < nombre_agent; p++){
             printf("%d    ",karma[p]);
             printf("%d \n",agents_karma[p]);
+        }
+
+        printf("k = %d\n",i);
+        printf("\n");  
+    }
+
+    //on tri les temps de travail du plus petit au plus grand 
+    for(int i=0;i<nombre_agent-1;i++){
+        for(int j=i+1;j<nombre_agent;j++){
+            if ( temps_travail[i] > temps_travail[j] ) {
+                int tampon_tri = temps_travail[i];
+                int tampon_agent = agents_travail[i];
+
+                agents_travail[i] = agents_travail[j];
+                temps_travail[i] = temps_travail[j];
+
+                agents_travail[j] = tampon_agent;
+                temps_travail[j] = tampon_tri;
+            }
+        }
+        for(int p = 0; p < nombre_agent; p++){
+            printf("%d    ",temps_travail[p]);
+            printf("%d \n",agents_travail[p]);
         }
 
         printf("k = %d\n",i);
