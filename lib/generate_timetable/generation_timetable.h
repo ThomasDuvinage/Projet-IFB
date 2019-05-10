@@ -10,6 +10,11 @@
 
 #define NB_SIZE 100
 
+#define MIN_SALLE 119
+#define MAX_SALLE 120
+
+#define NOMBRE_SALLE MIN_SALLE-MAX_SALLE
+
 
 /**
  * @brief Get the nday object

@@ -1,6 +1,8 @@
 #include "generation_timetable.h"
+#include "../identification/identification.h"
 #include "../recherche_salle/recherche_salle.h"
 #include"../buffer.h"
+#include "../personnel/agents_modif.h"
 
 void generate(){
 	char week[7][120] = {"Monday","Tuesday","Wednesday","Thursday","Friday"};//permet de stocker tous les jours de la semaine 
@@ -29,6 +31,7 @@ void generate(){
 	int nb_tache1 = 0,nb_tache2 = 0, nb_tache3 = 0;
 	int jour,heure,minute,etage,numero_salle,salle;
 
+
 	for(jour = index_jour; jour<5; jour++)
 	{
 		for(heure = 8; heure <= 18;heure++)//pour chaque heure de la journee nous remplisons les salles disponibles
@@ -38,7 +41,7 @@ void generate(){
 				for (etage = 0; etage < 3; etage++)//pour chaque etage nous balayons les salles dispo
 				{
 					//la boucle qui va suivre va permettre de remplir les dispo de l'etage 1
-					for (numero_salle = 119; numero_salle <= 120; numero_salle++)
+					for (numero_salle = MIN_SALLE; numero_salle <= MAX_SALLE; numero_salle++)
 					{
 						salle = numero_salle+(100*etage); 
 						//printf("heure :%d minute : %d etage : %d salle : %d etat : %d \n\n",heure,minute,etage+1,salle,recherche_salle(etage+1,salle,day,heure,minute));
@@ -93,7 +96,6 @@ void generate(){
 			}
 		}
 	}
-
 	//cette boucle permet d'afficher toutes les salles disponibles chaque 1/4h
 	for (int i = 0; i < 200; i++)
 	{
@@ -102,10 +104,9 @@ void generate(){
 		printf("salle a nettoyer ETAGE 2: %D   ",etage_2[i]);
 		printf("salle a nettoyer ETAGE 3: %D \n",etage_3[i]);
 	}
-	
-	
-	//en sortie de cette boucle on a par exemple etage_1 = [0,0,121,0]
-	//nous devons maintenant definir pour quel etage est ce qu'il a le plus de salle a nettoyer
+
+	choix_agent();
+
 }
 
 

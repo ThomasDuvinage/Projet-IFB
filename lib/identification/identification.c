@@ -6,7 +6,7 @@
  * 
  */
 char namePassBuffer[45][20];
-int nombre_agent;
+int nombre_agent;//cette variable est utilisée dans la fonction de lecture agent et de ajout_tache
 
 // ********  BOUCLE IDENTIFICATION  **********
 bool identification(){

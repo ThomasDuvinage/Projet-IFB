@@ -3,6 +3,12 @@
 
 #define BSIZE 80
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
+#include <math.h>
+
 /**
  * @brief cette declaration extern permet d'avoir accès à namePassBuffer dans toutes les fonctions <https://docs.microsoft.com/fr-fr/cpp/cpp/extern-cpp?view=vs-2019>
  * 

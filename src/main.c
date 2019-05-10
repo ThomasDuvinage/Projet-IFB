@@ -11,12 +11,13 @@
 
 // ****** MAIN ******
 int main() {
-	generate();
-
 
 	if (identification()) {
 		printf("BIENVENUE SUR NOTRE PLATFORME \n");
 	}
+
+	generate();
+
 
 	return 0;
 }
