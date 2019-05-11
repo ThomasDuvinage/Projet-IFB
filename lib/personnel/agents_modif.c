@@ -38,14 +38,7 @@ void choix_agent(){
                 agents_karma[j] = tampon_agent;
                 karma[j] = tampon_tri;
             }
-        }
-        for(int p = 0; p < nombre_agent; p++){
-            printf("%d    ",karma[p]);
-            printf("%d \n",agents_karma[p]);
-        }
-
-        printf("k = %d\n",i);
-        printf("\n");  
+        } 
     }
 
     //on tri les temps de travail du plus petit au plus grand 
@@ -62,13 +55,21 @@ void choix_agent(){
                 temps_travail[j] = tampon_tri;
             }
         }
-        for(int p = 0; p < nombre_agent; p++){
-            printf("%d    ",temps_travail[p]);
-            printf("%d \n",agents_travail[p]);
-        }
-
-        printf("k = %d\n",i);
-        printf("\n");  
     }
+
+    //permet d'afficher tous les parametres que nous avons trié
+    for(int p = 0; p < nombre_agent; p++){
+        printf("karma = %d    ",karma[p]);
+        printf("agent = %d    ",agents_karma[p]);
+
+        printf("travail = %d    ",temps_travail[p]);
+        printf("agent   = %d    ",agents_travail[p]);
+            
+        printf("%d\n",p);
+    }
+
+    
+
+
     
 }
