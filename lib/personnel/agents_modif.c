@@ -1,15 +1,15 @@
 #include "agents_modif.h"
 #include "../buffer.h"
 
-int karma[20] = {0,1,3,4,8,9,2,7};
-int temps_travail[20] = {7,19,3,4,88,9,2,7};
+int karma[20] = {0};
+int temps_travail[20] = {0};
 
 /**
  * @brief Cette fonciton va permettre de retourner l'index de l'agent qui a le plus petit karma
  * 
  * @param numero_agent 
  */
-void choix_agent(){
+int choix_agent(){
     //agent karma correspond au index des agents apres le tri 
     int minimum_karma = karma[0] , index_min;
     int minimum_travail = temps_travail[0];
@@ -57,39 +57,37 @@ void choix_agent(){
         }
     }
 
-    //permet d'afficher tous les parametres que nous avons trié
-    for(int p = 0; p < nombre_agent; p++){
-        printf("karma = %d    ",karma[p]);
-        printf("agent = %d    ",agents_karma[p]);
+    // //permet d'afficher tous les parametres que nous avons trié
+    // for(int p = 0; p < nombre_agent; p++){
+    //     printf("karma = %d    ",karma[p]);
+    //     printf("agent = %d    ",agents_karma[p]);
 
-        printf("travail = %d    ",temps_travail[p]);
-        printf("agent   = %d    ",agents_travail[p]);
+    //     printf("travail = %d    ",temps_travail[p]);
+    //     printf("agent   = %d    ",agents_travail[p]);
             
-        printf("%d\n",p);
-    }
+    //     printf("%d\n",p);
+    // }
 
     int score[20] = {0};//cette variable permet de stocker toutes les
     int sum;
 
+    //nous trions les scores du plus petit au plus grand afin de determiner le bon agent 
     for(int n = 0; n < nombre_agent; n++){
         sum = 0;
         for(int i = 0; i < nombre_agent;i++){
         
-            if (agents_karma[n] != agents_travail[i])
-            {
-                sum++;
-            }
-
-            if(agents_karma[n] == agents_travail[i])
-            {
+            if(agents_karma[n] == agents_travail[i] )
+            { 
+                sum = karma[n] + temps_travail[i];
                 i = nombre_agent;
             }
 
         }
-        printf("%d\n",sum);
         score[n] = sum;
     }
+    //comme nous lisons le tableau agent karma suivant n, ce tableau nous sert de reference pour les scores en therme d'indice 
 
+    //pour la boucle qui suit nous reutilisons le tableau de agent_karma afin de faire ne pas recreer un tableau 
     //on tri les karmas du plus petit au plus grand
     for(int i=0;i<nombre_agent-1;i++){
         for(int j=i+1;j<nombre_agent;j++){
@@ -107,12 +105,39 @@ void choix_agent(){
     }
 
     //permet d'afficher tous les parametres que nous avons trié
-    printf("\n");
-    for(int p = 0; p < nombre_agent; p++){
-        printf("score = %d    ",score[p]);
-        printf("agent = %d    ",agents_karma[p]);
+    // printf("\n");
+    // for(int p = 0; p < nombre_agent; p++){
+    //     printf("score = %d    ",score[p]);
+    //     printf("agent = %d    ",agents_karma[p]);
             
-        printf("%d\n",p);
+    //     printf("%d\n",p);
+    // }
+    //le premier indice de du tableau agent_karma permet de connaitre l'agent qui doit faire la tache car il possedre le plus petit karma et le plus petit temps de travail.
+    //seulement si plusieurs personne on le meme score alors nous devons choisir de maniere aleatoire afin que ce ne soit pas tout le temps la meme personne qui se retrouve choisi
+
+    int repetition = 0;
+    for(int i = 0;i<nombre_agent;i++){
+        if(score[0] == score[i])
+        {
+            repetition++;
+        }
+        else
+        {
+            i = nombre_agent;
+        }
+        
     }
-    
+
+    srand(time(0));
+    int choix_personnel;
+    if(repetition != 0){
+        choix_personnel = agents_karma[rand()%(repetition-1)];
+    }
+    else{
+        choix_personnel = agents_karma[0];
+    }
+
+    //printf("CHOIX = %d\n",choix_personnel);
+
+    return choix_personnel;
 }

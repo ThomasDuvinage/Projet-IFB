@@ -105,7 +105,7 @@ void generate(){
 		printf("salle a nettoyer ETAGE 3: %D \n",etage_3[i]);
 	}
 
-	choix_agent();
+	printf("L'agent choisi est le : %d\n",choix_agent());
 
 }
 

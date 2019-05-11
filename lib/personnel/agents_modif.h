@@ -4,6 +4,6 @@
 extern int karma[20];
 extern int temps_travail[20];
 
-void choix_agent();
+int choix_agent();
 
 #endif
