@@ -1,8 +1,8 @@
 #include "agents_modif.h"
 #include "../buffer.h"
 
-int karma[20] = {0,10,3,4,8,9,2,7};
-int temps_travail[20] = {0,10,3,4,88,9,2,7};
+int karma[20] = {0,1,3,4,8,9,2,7};
+int temps_travail[20] = {7,19,3,4,88,9,2,7};
 
 /**
  * @brief Cette fonciton va permettre de retourner l'index de l'agent qui a le plus petit karma
@@ -68,8 +68,51 @@ void choix_agent(){
         printf("%d\n",p);
     }
 
-    
+    int score[20] = {0};//cette variable permet de stocker toutes les
+    int sum;
 
+    for(int n = 0; n < nombre_agent; n++){
+        sum = 0;
+        for(int i = 0; i < nombre_agent;i++){
+        
+            if (agents_karma[n] != agents_travail[i])
+            {
+                sum++;
+            }
 
+            if(agents_karma[n] == agents_travail[i])
+            {
+                i = nombre_agent;
+            }
+
+        }
+        printf("%d\n",sum);
+        score[n] = sum;
+    }
+
+    //on tri les karmas du plus petit au plus grand
+    for(int i=0;i<nombre_agent-1;i++){
+        for(int j=i+1;j<nombre_agent;j++){
+            if ( score[i] > score[j] ) {
+                int tampon_tri = score[i];
+                int tampon_agent = agents_karma[i];
+
+                agents_karma[i] = agents_karma[j];
+                score[i] = score[j];
+
+                agents_karma[j] = tampon_agent;
+                score[j] = tampon_tri;
+            }
+        } 
+    }
+
+    //permet d'afficher tous les parametres que nous avons trié
+    printf("\n");
+    for(int p = 0; p < nombre_agent; p++){
+        printf("score = %d    ",score[p]);
+        printf("agent = %d    ",agents_karma[p]);
+            
+        printf("%d\n",p);
+    }
     
 }
