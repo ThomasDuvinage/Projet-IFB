@@ -5,7 +5,7 @@
 #include "../personnel/agents_modif.h"
 
 void generate(){
-	char week[7][120] = {"Monday","Tuesday","Wednesday","Thursday","Friday"};//permet de stocker tous les jours de la semaine 
+	char week[8][120] = {"Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"};//permet de stocker tous les jours de la semaine 
 
 	int i = 0;//nous creons un curseur qui va nous servir d'index pour remplie les dispo_etage
 
@@ -32,7 +32,7 @@ void generate(){
 	int jour,heure,minute,etage,numero_salle,salle;
 
 
-	for(jour = index_jour; jour<5; jour++)
+	for(jour = index_jour; jour<7; jour++)
 	{
 		for(heure = 8; heure <= 18;heure++)//pour chaque heure de la journee nous remplisons les salles disponibles
 		{
