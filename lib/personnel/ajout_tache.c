@@ -8,11 +8,9 @@
 void ajout_tache(int numero_agent,char jour[8],int salle, int etage, int heure, int minute){
     char chemin_agent[50] = "csv_files/agents/";//cette variable est declarer en extren dans le fichier buffer.h
 
-    char buffer[BSIZE];
     FILE *f;
-    char *field;
 
-    char numero_agent_char[5];
+    char numero_agent_char[5] = "";
     sprintf(numero_agent_char, "%d",numero_agent);//on convertit l'entier numero salle en char dans la chaine de caracteres nb_salle
     strcat(chemin_agent,numero_agent_char);
 	strcat(chemin_agent,"_");

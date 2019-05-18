@@ -27,13 +27,16 @@ void generate(){
 	 * 
 	 */
 	int etage_1[200]={0}, etage_2[200]= {0},etage_3[200]={0};
+	int salle_nettoyer[7][200] = {0};
+	int nb_salle_nettoyer = 0;
 	int index_etage1 = 0, index_etage2 = 0, index_etage3 = 0;
 	int nb_tache1 = 0,nb_tache2 = 0, nb_tache3 = 0;
 	int jour,heure,minute,etage,numero_salle,salle;
 
 
-	for(jour = index_jour; jour<=7; jour++)
+	for(jour = index_jour; jour<7; jour++)
 	{
+		nb_salle_nettoyer = 0;
 		for(heure = 8; heure <= 18;heure++)//pour chaque heure de la journee nous remplisons les salles disponibles
 		{
 			for(minute = 0; minute <= 45; minute += 15)
@@ -44,12 +47,22 @@ void generate(){
 					for (numero_salle = MIN_SALLE; numero_salle <= MAX_SALLE; numero_salle++)
 					{
 						salle = numero_salle+(100*etage); 
-						//printf("heure :%d minute : %d etage : %d salle : %d etat : %d \n\n",heure,minute,etage+1,salle,recherche_salle(etage+1,salle,day,heure,minute));
+						printf("heure :%d minute : %d etage : %d salle : %d etat : %d \n\n",heure,minute,etage+1,salle,recherche_salle(etage+1,salle,day,heure,minute));
 						//nous somme oblige de faire cela car numero salle varie de 100 a 120 
 						//or dans les etages nous modifions le numero de salle de 100 en 100 donc si nous passons a l'etage 2 soit etage = 1 dans le programme alors on aura numero salle = 220 par exemple
 				
 						if(recherche_salle(etage+1,salle,week[jour],heure,minute) == 0){
-							ajout_tache(choix_agent(),week[jour],salle,etage,heure,minute);
+							int indice_validation = 0;
+							for(int i = 0 ; i < 200;i++){//200 correspond à la dimension du tableau
+								if(salle_nettoyer[jour][i] == salle){
+									indice_validation = 1;
+								}
+							}
+
+							if(indice_validation == 0){
+								ajout_tache(choix_agent(),week[jour],salle,etage,heure,minute);
+								salle_nettoyer[jour][nb_salle_nettoyer] = salle;
+							}
 						}
 
 						// if(recherche_salle(etage+1,salle,week[jour],heure,minute) != -1){

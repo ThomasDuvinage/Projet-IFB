@@ -61,16 +61,16 @@ int choix_agent(){
         }
     }
 
-    // //permet d'afficher tous les parametres que nous avons trié
-    // for(int p = 0; p < nombre_agent; p++){
-    //     printf("karma = %d    ",karma[p]);
-    //     printf("agent = %d    ",agents_karma[p]);
+    //permet d'afficher tous les parametres que nous avons trié
+    for(int p = 0; p < nombre_agent; p++){
+        printf("karma = %d    ",karma[p]);
+        printf("agent = %d    ",agents_karma[p]);
 
-    //     printf("travail = %d    ",temps_travail[p]);
-    //     printf("agent   = %d    ",agents_travail[p]);
+        printf("travail = %d    ",temps_travail[p]);
+        printf("agent   = %d    ",agents_travail[p]);
             
-    //     printf("%d\n",p);
-    // }
+        printf("%d\n",p);
+    }
 
     int score[20] = {0};//cette variable permet de stocker toutes les
     int sum;
@@ -153,6 +153,8 @@ int choix_agent(){
         }
         
     }
+
+    printf("index travail : %d\n",index_agent_temps_travail);
     //printf("CHOIX = %d\n",choix_personnel);
 
     return choix_personnel;
