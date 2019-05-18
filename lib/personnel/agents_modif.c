@@ -4,6 +4,11 @@
 int karma[20] = {0};
 int temps_travail[20] = {0};
 
+int agents_karma[20] = {0};
+int agents_travail[20] = {0};
+
+int index_agent_temps_travail;
+
 /**
  * @brief Cette fonciton va permettre de retourner l'index de l'agent qui a le plus petit karma
  * 
@@ -15,8 +20,7 @@ int choix_agent(){
     int minimum_travail = temps_travail[0];
     int value_to_return;
 
-    int agents_karma[20] = {0};
-    int agents_travail[20] = {0};
+    
 
     //on genere les tableaux pour les agents
     for(int i = 0; i<nombre_agent ; i++){
@@ -137,6 +141,18 @@ int choix_agent(){
         choix_personnel = agents_karma[0];
     }
 
+    //la boucle qui suit permet de savoir la position de l'agent dans le tableau des temps de travail afin d'ajouter le temps de travail dans la bonne case du tableau
+    index_agent_temps_travail = 0;
+    for(int i = 0;i < nombre_agent;i++){
+        if(choix_personnel != agents_travail[i]){
+            index_agent_temps_travail++;
+        }
+        else
+        {
+            i = nombre_agent;
+        }
+        
+    }
     //printf("CHOIX = %d\n",choix_personnel);
 
     return choix_personnel;
