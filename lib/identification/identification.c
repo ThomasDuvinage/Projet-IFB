@@ -166,17 +166,5 @@ int creation_agent(int* nb_employe){
 	
 	fclose(f);
 
-    FILE *agenda_personnel;
-    char numero_agent[3];
-    char chemin_agent[50] = "csv_files/agents/";
-    sprintf(numero_agent, "%d",nombre_agent);
-    strcat(chemin_agent,numero_agent);
-    strcat(chemin_agent,"_");
-    strcat(chemin_agent,nom);
-    strcat(chemin_agent,".csv");
-    agenda_personnel = fopen(chemin_agent,"w");
-
-    fclose(agenda_personnel);
-
     return 0;
 }

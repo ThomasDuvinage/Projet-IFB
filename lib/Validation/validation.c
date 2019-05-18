@@ -18,6 +18,8 @@ int modif_etat(){
     int n = 8;//curseur permettant d'afficher l'heure dans l'affichage
 	int i = 0; //curseur permettant de remplir le tableau des dispos_j
 
+	
+
 	/* open the CSV file */
 	f = fopen(chemin_fichier,"r");
 
