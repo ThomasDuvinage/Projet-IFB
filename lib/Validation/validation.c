@@ -89,7 +89,7 @@ int validation(int agent,int etage,int numero_salle,char jour[10],int heure,int 
 	if(fichier_agent == NULL){
 		printf("Nous ne pouvons pas ouvrir le fichier pour verifier les taches de l'agent\n");
 	}
-	while (fgets())
+	while (fgets(buffer_agent,BSIZE,fichier_agent))
 	{
 		
 	}
