@@ -167,5 +167,6 @@ int creation_agent(int* nb_employe){
 	
 	fclose(f);
 
+
     return 0;
 }

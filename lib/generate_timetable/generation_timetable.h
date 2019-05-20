@@ -25,7 +25,7 @@
  */
 
 int 
-get_nday(char day[128],char week[7][120]);
+get_nday(char day[128],char week[8][20]);
 
 
 /**
