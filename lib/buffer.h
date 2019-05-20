@@ -15,11 +15,14 @@
  */
 extern char namePassBuffer[45][20];//utilisée dans tous les fichiers identifications 
 extern int nombre_agent;
+extern char nom_agent[20];
 //RECHERCHER SALLE
 extern char nom_salle[50]; //utilisée dans la fonction de recherche de salle 
 
 //VALIDATION
 extern char chemin_fichier[50];// utilisée dans la fonction de validation
 int numero_salle,etage;// declaration des variables 
+
+
 
 #endif

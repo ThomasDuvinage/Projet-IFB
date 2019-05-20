@@ -3,8 +3,9 @@
 
 char chemin_fichier[50] = "csv_files/etage_";//aller voir buffer.h pour la declaration de la variable
 int numero_salle,etage;// declaration des variables 
+char nom_agent[20];
 
-int modif_etat(){
+int validation(int agent,int etage,int numero_salle,char jour[10],int heure,int minute){
 	generation_chemin();//on appelle la fonction de generation de chemin voir plus bas dans le code 
 
 	char buffer[BSIZE];
@@ -60,7 +61,45 @@ int modif_etat(){
 	/* close file */
 	fclose(f);//on ferme la boucle de lecture de fichier 
 
+
+	int index_agent;
+
+	for(int i = 0; i<nombre_agent; i+=2){
+		if(namePassBuffer[i] != nom_agent){
+			index_agent+=2;
+		}
+	}
+
+	char chemin_agent[50] = "csv_files/agents/";//cette variable est declarer en extren dans le fichier buffer.h
+
+    FILE *fichier_agent;
+	char buffer_agent[BSIZE];
+	char* field_agent;
+
+    char numero_agent_char[5] = "";
+    sprintf(numero_agent_char, "%d",index_agent);//on convertit l'entier numero salle en char dans la chaine de caracteres nb_salle
+    strcat(chemin_agent,numero_agent_char);
+	strcat(chemin_agent,"_");
+	strcat(chemin_agent,namePassBuffer[index_agent]);//nous multiplions par 2 afin de selectionner uniquement les noms des agents 
+    strcat(chemin_agent,".csv"); //on ajoute la description du fichier
+    printf("%s\n",chemin_agent);
+
+	fichier_agent = fopen(chemin_agent,"r");
+
+	if(fichier_agent == NULL){
+		printf("Nous ne pouvons pas ouvrir le fichier pour verifier les taches de l'agent\n");
+	}
+	while (fgets())
+	{
+		
+	}
+
+	
+
 	//TODO il faut remplacer à cette endroit les valeurs du tableau afin de les remettre dans le fichier 
+	int index = ((heure-8)*4)+(minute/15);
+
+	DISPO_J[index] = 2;
 
 	//on passe en mode ecriture de fichier, cela permet de remplacer les valeurs dans le tableau et apres de les inseres dans le fichier
 	f = fopen(chemin_fichier,"w");
@@ -78,6 +117,7 @@ int modif_etat(){
 
 
 void generation_chemin(){// voir le fichier validation.h pour les explications de la fonction
+	char chemin_fichier[50] = "csv_files/etage_";
 	char nb_salle[12]; // on creer une chaine de caracteres qui va permettre de recevoir le numero de la salle en caracteres
     char numero_etage[5];// permet d'acceuilir la convertion de int vers char de numero etage 
 	

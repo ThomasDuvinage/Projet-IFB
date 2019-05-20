@@ -15,12 +15,7 @@ int index_agent_temps_travail;
  * @param numero_agent 
  */
 int choix_agent(){
-    //agent karma correspond au index des agents apres le tri 
-    int minimum_karma = karma[0] , index_min;
-    int minimum_travail = temps_travail[0];
-    int value_to_return;
 
-    
 
     //on genere les tableaux pour les agents
     for(int i = 0; i<nombre_agent ; i++){

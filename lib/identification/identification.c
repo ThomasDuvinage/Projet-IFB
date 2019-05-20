@@ -7,7 +7,7 @@
  */
 char namePassBuffer[45][20];
 int nombre_agent;//cette variable est utilisée dans la fonction de lecture agent et de ajout_tache
-
+char nom_agent[20];
 // ********  BOUCLE IDENTIFICATION  **********
 bool identification(){
     int i; //curseur pour la verification lors de l'autentification
@@ -109,6 +109,7 @@ void lecture_identifiant(int* nb_employe){
 	{
 		field=strtok(buffer,",");//on separe le fichier en chaine de caractere entre chaque (,) 
 		strcpy(nom,field);//on associe a la variable la valeur en entier de la chaine de caractere de la valeur lue precedement --> fonction atoi()
+        strncpy(nom,nom_agent,strnlen(nom));
         //printf("%s \n",nom);
 
 		field=strtok(NULL,",");
