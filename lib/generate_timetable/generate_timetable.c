@@ -47,7 +47,7 @@ void generate(){
 					for (numero_salle = MIN_SALLE; numero_salle <= MAX_SALLE; numero_salle++)
 					{
 						salle = numero_salle+(100*etage); 
-						printf("heure :%d minute : %d etage : %d salle : %d etat : %d \n\n",heure,minute,etage+1,salle,recherche_salle(etage+1,salle,day,heure,minute));
+						//printf("heure :%d minute : %d etage : %d salle : %d etat : %d \n\n",heure,minute,etage+1,salle,recherche_salle(etage+1,salle,day,heure,minute));
 						//nous somme oblige de faire cela car numero salle varie de 100 a 120 
 						//or dans les etages nous modifions le numero de salle de 100 en 100 donc si nous passons a l'etage 2 soit etage = 1 dans le programme alors on aura numero salle = 220 par exemple
 				
@@ -65,50 +65,50 @@ void generate(){
 							}
 						}
 
-						// if(recherche_salle(etage+1,salle,week[jour],heure,minute) != -1){
-						// 	if(etage+1 == 1){
-						// 		//rechercher la dispo de toutes les salles pour l'etage 1
-						// 		if(recherche_salle(etage+1,salle,week[jour],heure,minute) == 0){
-						// 			etage_1[index_etage1] = salle; //nous somme oblige de faire cela car numero salle varie de 100 a 120 
-						// 			//or dans les etages nous modifions le numero de salle de 100 en 100 donc si nous passons a l'etage 2 soit etage = 1 dans le programme alors 
-						// 			index_etage1++;	//de base nous avons rempli le tableau etage_1 de 0 donc on rempli avec la salle si la condition est verifiee
-						// 			ajout_tache(choix_agent(),week[jour],salle,etage,heure,minute);
-						// 		}
-						// 		else
-						// 		{
-						// 			index_etage1++;//cela permet de sauter un champ de la sorte nous pourrons savoir a la salle, l'heure, la minute d'une paire de coups
-						// 		}					
-						// 	}
+					// 	if(recherche_salle(etage+1,salle,week[jour],heure,minute) != -1){
+					// 		if(etage+1 == 1){
+					// 			//rechercher la dispo de toutes les salles pour l'etage 1
+					// 			if(recherche_salle(etage+1,salle,week[jour],heure,minute) == 0){
+					// 				etage_1[index_etage1] = salle; //nous somme oblige de faire cela car numero salle varie de 100 a 120 
+					// 				//or dans les etages nous modifions le numero de salle de 100 en 100 donc si nous passons a l'etage 2 soit etage = 1 dans le programme alors 
+					// 				index_etage1++;	//de base nous avons rempli le tableau etage_1 de 0 donc on rempli avec la salle si la condition est verifiee
+					// 				ajout_tache(choix_agent(),week[jour],salle,etage,heure,minute);
+					// 			}
+					// 			else
+					// 			{
+					// 				index_etage1++;//cela permet de sauter un champ de la sorte nous pourrons savoir a la salle, l'heure, la minute d'une paire de coups
+					// 			}					
+					// 		}
 
-						// 	if(etage+1 == 2){
-						// 		//rechercher la dispo de toutes les salles pour l'etage 2
-						// 		if(recherche_salle(etage+1,salle,week[jour],heure,minute) == 0){
-						// 			etage_2[index_etage2] = salle;	
-						// 			index_etage2++;	
-						// 		}
-						// 		else
-						// 		{
-						// 			index_etage2++;
-						// 		}	
-						// 	}
+					// 		if(etage+1 == 2){
+					// 			//rechercher la dispo de toutes les salles pour l'etage 2
+					// 			if(recherche_salle(etage+1,salle,week[jour],heure,minute) == 0){
+					// 				etage_2[index_etage2] = salle;	
+					// 				index_etage2++;	
+					// 			}
+					// 			else
+					// 			{
+					// 				index_etage2++;
+					// 			}	
+					// 		}
 
-						// 	if(etage+1 == 3){
-						// 		//recherche la dispo de toutes les salles de l'etage 3
-						// 		if(recherche_salle(etage+1,salle,week[jour],heure,minute) == 0){
-						// 			etage_3[index_etage3] = salle;	
-						// 			index_etage3++;		
-						// 		}	
-						// 		else
-						// 		{
-						// 			index_etage3++;
-						// 		}			
-						// 	}
-						//}
-						// else
-						// {
-						// printf("il y a un probleme dans la declaration des parametres dans code\n");
-						// exit(1);
-						// }
+					// 		if(etage+1 == 3){
+					// 			//recherche la dispo de toutes les salles de l'etage 3
+					// 			if(recherche_salle(etage+1,salle,week[jour],heure,minute) == 0){
+					// 				etage_3[index_etage3] = salle;	
+					// 				index_etage3++;		
+					// 			}	
+					// 			else
+					// 			{
+					// 				index_etage3++;
+					// 			}			
+					// 		}
+					// 	}
+					// 	else
+					// 	{
+					// 	printf("il y a un probleme dans la declaration des parametres dans code\n");
+					// 	exit(1);
+					// 	}
 					}
 				}
 			}
@@ -118,9 +118,9 @@ void generate(){
 	for (int i = 0; i < 200; i++)
 	{
 		/* code */
-		printf("salle a nettoyer ETAGE 1: %D   ",etage_1[i]);
-		printf("salle a nettoyer ETAGE 2: %D   ",etage_2[i]);
-		printf("salle a nettoyer ETAGE 3: %D \n",etage_3[i]);
+		printf("salle a nettoyer ETAGE 1: %d   ",etage_1[i]);
+		printf("salle a nettoyer ETAGE 2: %d  ",etage_2[i]);
+		printf("salle a nettoyer ETAGE 3: %d \n",etage_3[i]);
 	}
 
 	printf("L'agent choisi est le : %d\n",choix_agent());

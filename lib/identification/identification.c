@@ -109,7 +109,7 @@ void lecture_identifiant(int* nb_employe){
 	{
 		field=strtok(buffer,",");//on separe le fichier en chaine de caractere entre chaque (,) 
 		strcpy(nom,field);//on associe a la variable la valeur en entier de la chaine de caractere de la valeur lue precedement --> fonction atoi()
-        strncpy(nom,nom_agent,strnlen(nom));
+        //strncpy(nom,nom_agent,strnlen(nom));
         //printf("%s \n",nom);
 
 		field=strtok(NULL,",");

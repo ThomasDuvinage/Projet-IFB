@@ -18,10 +18,11 @@ int recherche_salle(int etage,int numero_salle,char jour[10],int heure,int minut
     int i = 0; //curseur permettant de remplir le tableau des dispos_j
  
     char nb_salle[12]; // on creer une chaine de caracteres qui va permettre de recevoir le numero de la salle en caracteres
-    char numero_etage[5];
+    char numero_etage[5] = "";
     sprintf(numero_etage, "%d",etage);//on convertit l'entier numero salle en char dans la chaine de caracteres nb_salle
-    strcat(nom_salle,numero_etage );
+    strcat(nom_salle,&numero_etage[0]);
     strcat(nom_salle,"/");
+    printf("jour = %s\n",jour);
     strcat(nom_salle,jour);
     strcat(nom_salle,"/");
     strcat(nom_salle,"p");

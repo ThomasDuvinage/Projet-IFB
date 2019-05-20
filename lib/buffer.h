@@ -24,5 +24,4 @@ extern char chemin_fichier[50];// utilisée dans la fonction de validation
 int numero_salle,etage;// declaration des variables 
 
 
-
 #endif

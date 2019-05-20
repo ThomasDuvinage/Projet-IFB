@@ -11,6 +11,7 @@ void ajout_tache(int numero_agent,char jour[8],int salle, int etage, int heure, 
     FILE *f;
 
     char numero_agent_char[5] = "";
+	
     sprintf(numero_agent_char, "%d",numero_agent);//on convertit l'entier numero salle en char dans la chaine de caracteres nb_salle
     strcat(chemin_agent,numero_agent_char);
 	strcat(chemin_agent,"_");
@@ -28,6 +29,7 @@ void ajout_tache(int numero_agent,char jour[8],int salle, int etage, int heure, 
             //exit(1);
         }
 		else{
+				printf("Karma avant : %d",karma[numero_agent]);
 				if(heure < 9 || heure > 17){
 					karma[numero_agent] += 2;
 				}
@@ -35,10 +37,12 @@ void ajout_tache(int numero_agent,char jour[8],int salle, int etage, int heure, 
 				{
 					karma[numero_agent] +=1;
 				}
+
+				printf("   Apres : %d\n",karma[numero_agent]);
 				
 				temps_travail[index_agent_temps_travail] += 15;
 
-				fprintf(f,"Jour :%s Heure :%dh Minutes :%dmin Salle :%d Etage %d\n",jour,heure,minute,salle,etage);
+				fprintf(f,"Jour :%s Heure :%dh Minutes :%dmin Salle :%d Etage %d",jour,heure,minute,salle,etage);
             }
         /* close file */
         fclose(f);//femeture de la lecture du fichier
