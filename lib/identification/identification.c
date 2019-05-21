@@ -126,6 +126,7 @@ void lecture_identifiant(int* nb_employe){
 	}
 
     *nb_employe = i;
+    printf("nombre agent = %d\n",nombre_agent);
 	/* close file */
 	fclose(f);//femeture de la lecture du fichier
 }

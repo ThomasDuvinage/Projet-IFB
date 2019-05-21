@@ -35,11 +35,6 @@ void generate(){
 	char get_jour[15];
 
 	//cette partie permet de remettre les fichiers des agents a zero afin de les remplir correctement
-	for(int i = 0;i<nombre_agent;i++){
-		
-	}
-
-
 	for(jour = index_jour; jour<5; jour++)
 	{
 		nb_salle_nettoyer = 0;
