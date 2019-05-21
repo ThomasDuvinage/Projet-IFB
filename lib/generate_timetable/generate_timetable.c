@@ -4,8 +4,42 @@
 #include"../buffer.h"
 #include "../personnel/agents_modif.h"
 
+int nombre_agent;
+char namePassBuffer[45][20]; 
+
+int agents_karma[20] ;
+int agents_travail[20] ;
+
 void generate(){
 	char week[15][20] = {"Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"};//permet de stocker tous les jours de la semaine 
+
+	//on genere les tableaux pour les agents
+	for(int i = 0; i<nombre_agent ; i++){
+		agents_karma[i] = i;
+		agents_travail[i] = i;
+
+	}
+	//cette partie permet de remettre a zero tous les emplois du temps deja generer auparavant 
+	//pour cela nous creons des fichiers vides
+	for(int i = 0;i<nombre_agent;i++){
+		char chemin_agent[50] = "csv_files/agents/";//cette variable est declarer en extren dans le fichier buffer.h
+
+		FILE *reecriture_fichier;
+
+		char numero_agent_char[5] = "";
+		
+		sprintf(numero_agent_char, "%d",i);//on convertit l'entier numero salle en char dans la chaine de caracteres nb_salle
+		strcat(chemin_agent,numero_agent_char);
+		strcat(chemin_agent,"_");
+		strcat(chemin_agent,namePassBuffer[i*2]);//nous multiplions par 2 afin de selectionner uniquement les noms des agents 
+		strcat(chemin_agent,".csv"); //on ajoute la description du fichier
+		printf("%s\n",chemin_agent);
+
+		reecriture_fichier = fopen(chemin_agent,"w");
+
+		fclose(reecriture_fichier);
+	}
+
 
 	int i = 0;//nous creons un curseur qui va nous servir d'index pour remplie les dispo_etage
 
@@ -27,14 +61,16 @@ void generate(){
 	 * 
 	 */
 	int etage_1[200]={0}, etage_2[200]= {0},etage_3[200]={0};
-	int salle_nettoyer[7][500] = {0};
+	int salle_nettoyer[7][50] = {0};
 	int nb_salle_nettoyer = 0;
-	int index_etage1 = 0, index_etage2 = 0, index_etage3 = 0;
-	int nb_tache1 = 0,nb_tache2 = 0, nb_tache3 = 0;
+
 	int jour,heure,minute,etage,numero_salle,salle;
 	char get_jour[15];
-
+	int agent_check_disponibility[20][50] = {0}; //cette variable permet de savoir si la personne a deja une salle a nettoyer a l'heure selectionner
 	//cette partie permet de remettre les fichiers des agents a zero afin de les remplir correctement
+	int index; //cette variable permet de connaitre l'index ou mettre l'etat de l'agent dans le tableau
+	
+	
 	for(jour = index_jour; jour<5; jour++)
 	{
 		nb_salle_nettoyer = 0;
@@ -48,6 +84,7 @@ void generate(){
 					for (numero_salle = MIN_SALLE; numero_salle <= MAX_SALLE; numero_salle++)
 					{
 						salle = numero_salle+(100*etage); 
+						index = ((heure-8)*4)+(minute/15);
 
 						for(int k = 0; k< 15;k++){//cette boucle permet de vider la variable get_jour afin de pouvoir ecrire un nouveau jour
 							strcpy(&get_jour[k],"\0");//permet de mettre a jour la variable de get_jour 
@@ -56,25 +93,45 @@ void generate(){
 						strncpy(get_jour,week[jour],strlen(week[jour]));//permet de coller le jour dans une variable car sinon beug
 						//printf("je suis celui que tu cherches %s de longueur : %lu\n",get_jour,strlen(week[6]));
 
-						printf("heure :%d minute : %d etage : %d salle : %d etat : %d jour: %d\n\n",heure,minute,etage+1,salle,recherche_salle(etage+1,salle,get_jour,heure,minute),jour);
+						//printf("heure :%d minute : %d etage : %d salle : %d etat : %d jour: %d\n\n",heure,minute,etage+1,salle,recherche_salle(etage+1,salle,get_jour,heure,minute),jour);
 						//nous somme oblige de faire cela car numero salle varie de 100 a 120 
 						//or dans les etages nous modifions le numero de salle de 100 en 100 donc si nous passons a l'etage 2 soit etage = 1 dans le programme alors on aura numero salle = 220 par exemple
 				
 						if(recherche_salle(etage+1,salle,get_jour,heure,minute) == 0){
 							int indice_validation = 0;//cet indice permet de savoir si la salle a deja ete nettoyer
-							for(int i = 0 ; i < 500;i++){//200 correspond à la dimension du tableau
+							for(int i = 0 ; i < 50;i++){//200 correspond à la dimension du tableau
 								if(salle_nettoyer[jour][i] == salle){//si il y a une appartenant alors nous ne nettoyons pas la salle
-									indice_validation = 1;
+									indice_validation = 1;//permet de savoir si une salle a deja été nettoyer
 									i = 200;//permet de stopper la boucle
 								}
 							}
 
 							if(indice_validation == 0){//or si celle-ci n'appartient pas encore au tableau alors nous la nettoyons
-								ajout_tache(choix_agent(),get_jour,salle,etage,heure,minute);
-								salle_nettoyer[jour][nb_salle_nettoyer] = salle;
+								int agent_choisi = choix_agent();
+								int loop_stop = 0;
+
+								while(agent_check_disponibility[agent_choisi][index] != 0){
+									agent_choisi = choix_agent();
+									loop_stop++;
+
+									if(loop_stop == 10){
+										loop_stop = 0;
+										index++;
+									}
+									
+								}
+
+								if(loop_stop != 10){
+									ajout_tache(agent_choisi,get_jour,salle,etage,heure,minute);
+									salle_nettoyer[jour][nb_salle_nettoyer] = salle;//on ajoute la salle a l'index qui nous interresse
+									nb_salle_nettoyer++;//permet de deplacer le curseur afin d'ajouter la salle suivante au bon index dans le tableau
+									agent_check_disponibility[agent_choisi][index] = 1;
+								}
+								else{
+									printf("Nous n'avons pas pu trouver de disponibilité d'agent pour le nettoyage de la salle : %d\n",numero_salle);
+								}
 							}
 						}
-						
 					}
 				}
 			}
@@ -90,6 +147,12 @@ void generate(){
 	// }
 
 	//printf("L'agent choisi est le : %d\n",choix_agent());
+
+	// for(int i = 0;i<nombre_agent;i++){
+	// 	for(int k = 0; k<50;k++){
+	// 		printf("disponibilté de l'agent %d =  %d\n",i,agent_check_disponibility[i][k]);
+	// 	}
+	// }
 
 }
 

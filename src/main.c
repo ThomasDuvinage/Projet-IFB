@@ -20,9 +20,6 @@ int main() {
 
 	generate();
 
-	
-
-
 	return 0;
 }
 

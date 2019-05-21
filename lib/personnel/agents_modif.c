@@ -9,18 +9,13 @@ int agents_travail[20] = {0};
 
 int index_agent_temps_travail;
 
+
 /**
  * @brief Cette fonciton va permettre de retourner l'index de l'agent qui a le plus petit karma
  * 
  * @param numero_agent 
  */
 int choix_agent(){
-    //on genere les tableaux pour les agents
-    for(int i = 0; i<nombre_agent ; i++){
-        agents_karma[i] = i;
-        agents_travail[i] = i;
-
-    }
 
     //on tri les karmas du plus petit au plus grand
     for(int i=0;i<nombre_agent-1;i++){
@@ -71,12 +66,18 @@ int choix_agent(){
     int score[20] = {0};//cette variable permet de stocker toutes les
     int sum;
 
+    int agent_tampon_tri[20];
+
+    for(int k = 0;k<nombre_agent;k++){
+        agent_tampon_tri[k] = agents_karma[k];
+    }
+
     //nous trions les scores du plus petit au plus grand afin de determiner le bon agent 
     for(int n = 0; n < nombre_agent; n++){
         sum = 0;
         for(int i = 0; i < nombre_agent;i++){
         
-            if(agents_karma[n] == agents_travail[i] )
+            if(agent_tampon_tri[n] == agents_travail[i] )
             { 
                 sum = karma[n] + temps_travail[i];
                 i = nombre_agent;
@@ -93,13 +94,13 @@ int choix_agent(){
         for(int j=i+1;j<nombre_agent;j++){
             if ( score[i] > score[j] ) {
                 int tampon_tri = score[i];
+
                 int tampon_agent = agents_karma[i];
-                int tampon_karma = karma[i];
 
-                agents_karma[i] = agents_karma[j];
+                agent_tampon_tri[i] = agent_tampon_tri[j];
+                agent_tampon_tri[j] = tampon_agent;
+
                 score[i] = score[j];
-
-                agents_karma[j] = tampon_agent;
                 score[j] = tampon_tri;
             }
         } 
@@ -109,7 +110,7 @@ int choix_agent(){
     printf("\n");
     for(int p = 0; p < nombre_agent; p++){
         printf("score = %d    ",score[p]);
-        printf("agent = %d    ",agents_karma[p]);
+        printf("agent = %d    ",agent_tampon_tri[p]);
             
         printf("%d\n",p);
     }
@@ -131,17 +132,17 @@ int choix_agent(){
     
     srand(time(0));
     int choix_personnel,print_value;
-    if(repetition-1 != 0){
+    if(repetition-1 > 0){
         
         printf("repetition - 1 = %d",repetition-1);
         print_value = rand()%(repetition-1);
-        choix_personnel = agents_karma[print_value];
+        choix_personnel = agent_tampon_tri[print_value];
         printf("print value = %d\n",print_value);
-        printf("choix personnel = %d\n",agents_karma[print_value]);
+        printf("choix personnel = %d\n",agent_tampon_tri[print_value]);
         
     }
     else{
-        choix_personnel = agents_karma[0];
+        choix_personnel = agent_tampon_tri[0];
         printf("\n\n Directement print value = %d\n",print_value);
     }
 
