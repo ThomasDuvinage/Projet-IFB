@@ -110,14 +110,9 @@ void generate(){
 								int agent_choisi = choix_agent();
 								int loop_stop = 0;
 
-								while(agent_check_disponibility[agent_choisi][index] != 0){
+								while(agent_check_disponibility[agent_choisi][index] != 0 && loop_stop < 10){
 									agent_choisi = choix_agent();
 									loop_stop++;
-
-									if(loop_stop == 10){
-										loop_stop = 0;
-										index++;
-									}
 									
 								}
 

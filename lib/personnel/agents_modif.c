@@ -51,17 +51,17 @@ int choix_agent(){
 
     printf("\n\n");
     //permet d'afficher tous les parametres que nous avons trié
-    for(int p = 0; p < nombre_agent; p++){
+    // for(int p = 0; p < nombre_agent; p++){
     
-        printf("karma = %d    ",karma[p]);
-        printf("agent = %d    ",agents_karma[p]);
+    //     printf("karma = %d    ",karma[p]);
+    //     printf("agent = %d    ",agents_karma[p]);
 
-        printf("travail = %d    ",temps_travail[p]);
-        printf("agent   = %d    ",agents_travail[p]);
+    //     printf("travail = %d    ",temps_travail[p]);
+    //     printf("agent   = %d    ",agents_travail[p]);
         
-        printf("agent = %d    ",nombre_agent);
-        printf("p =%d\n",p);
-    }
+    //     printf("agent = %d    ",nombre_agent);
+    //     printf("p =%d\n",p);
+    // }
 
     int score[20] = {0};//cette variable permet de stocker toutes les
     int sum;
@@ -70,6 +70,7 @@ int choix_agent(){
 
     for(int k = 0;k<nombre_agent;k++){
         agent_tampon_tri[k] = agents_karma[k];
+        printf("agent_tri = %d\n",agent_tampon_tri[k]);
     }
 
     //nous trions les scores du plus petit au plus grand afin de determiner le bon agent 
@@ -94,7 +95,6 @@ int choix_agent(){
         for(int j=i+1;j<nombre_agent;j++){
             if ( score[i] > score[j] ) {
                 int tampon_tri = score[i];
-
                 int tampon_agent = agents_karma[i];
 
                 agent_tampon_tri[i] = agent_tampon_tri[j];
