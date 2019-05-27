@@ -23,7 +23,7 @@ Par exemple l’agent de ménage rentre son identifiant et on lui génère la li
     Voici le foncitonnement de la fonction :
 
     <p align="center">
-    <img width="300" height="500" src="img/Diagramme_identification.png">
+    <img width="350" height="500" src="img/Diagramme_identification.png">
     </p>
 
 
