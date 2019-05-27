@@ -116,7 +116,6 @@ Pour compiler ce projet en ligne de commande vous devez taper :
 
 #### gcc -g src/main.c lib/identification/identification.c lib/personnel/agents_modif.c lib/personnel/ajout_tache.c lib/recherche_salle/recherche_salle.c lib/generate_timetable/generate_timetable.c lib/Validation/validation.c lib/Validation/change_value.c lib/Validation/reinitialisation.c  -o projet.app
 
-Les (...) correspondent à tous les autres fichiers .c de votre projet dont vous avez besoin pour que le projet main.c fonctionne. 
 
 Très important pour faire cela vous devez faire en sorte que le .h ne soit lu qu'une seule fois donc vous devez ajouter : (exemple avec identification.h)
 
