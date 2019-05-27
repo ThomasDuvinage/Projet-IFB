@@ -97,7 +97,7 @@ void generate(){
 						//nous somme oblige de faire cela car numero salle varie de 100 a 120 
 						//or dans les etages nous modifions le numero de salle de 100 en 100 donc si nous passons a l'etage 2 soit etage = 1 dans le programme alors on aura numero salle = 220 par exemple
 				
-						if(recherche_salle(etage+1,salle,get_jour,heure,minute) == 0){
+						if(recherche_salle(etage+1,salle,get_jour,heure,minute) == 0 || recherche_salle(etage+1,salle,get_jour,heure,minute) == 3){
 							int indice_validation = 0;//cet indice permet de savoir si la salle a deja ete nettoyer
 							for(int i = 0 ; i < 50;i++){//200 correspond à la dimension du tableau
 								if(salle_nettoyer[jour][i] == salle){//si il y a une appartenant alors nous ne nettoyons pas la salle
