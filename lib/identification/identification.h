@@ -25,8 +25,7 @@ identification();
  * 
  * @param nb_employe 
  */
-void 
-lecture_identifiant		(int* nb_employe);
+void lecture_identifiant(int* nb_employe);
 
 /**
  * @brief Cette fonction permet de creer un agent dans la base de données pour ensuite l'ajouter dans le tableau que vous avons lu grâce à la fonction lecture_identifiant
@@ -34,7 +33,6 @@ lecture_identifiant		(int* nb_employe);
  * @param nb_employe 
  * @return int 
  */
-int  
-creation_agent			(int* nb_employe);
+int  creation_agent(int* nb_employe);
 
 #endif
