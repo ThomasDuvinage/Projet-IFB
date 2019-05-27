@@ -22,7 +22,7 @@ Par exemple l’agent de ménage rentre son identifiant et on lui génère la li
 
     Voici le foncitonnement de la fonction :
 
-    ![Fonction identification](img/Diagramme_identification.png)
+    <div style="text-align:center"><img src="img/Diagramme_identification.png" /></div>
 
 
  - Fonction de lecture_identifiant 
