@@ -17,7 +17,7 @@ void ajout_tache(int numero_agent,char jour[8],int salle, int etage, int heure, 
 	strcat(chemin_agent,"_");
 	strcat(chemin_agent,namePassBuffer[numero_agent*2]);//nous multiplions par 2 afin de selectionner uniquement les noms des agents 
     strcat(chemin_agent,".csv"); //on ajoute la description du fichier
-    printf("%s\n",chemin_agent);
+    //printf("%s\n",chemin_agent);
 
     /* open the CSV file */
     f = fopen(chemin_agent,"a");
@@ -28,7 +28,7 @@ void ajout_tache(int numero_agent,char jour[8],int salle, int etage, int heure, 
         //exit(1);
     }
 	else{
-		printf("Karma avant : %d",karma[numero_agent]);
+		//printf("Karma avant : %d",karma[numero_agent]);
 		if(heure < 9 || heure > 17){
 			karma[numero_agent] += 2;
 		}
@@ -37,7 +37,7 @@ void ajout_tache(int numero_agent,char jour[8],int salle, int etage, int heure, 
 		    karma[numero_agent] +=1;
 		}
 
-		printf("   Apres : %d\n",karma[numero_agent]);
+		//printf("   Apres : %d\n",karma[numero_agent]);
 				
 		temps_travail[index_agent_temps_travail] += 15;
 

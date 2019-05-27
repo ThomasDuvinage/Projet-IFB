@@ -9,21 +9,22 @@
 #define BSIZE 80
 
 
-/**
- * @brief Cette fonction permet de générer le chemin pour acceder au fichier csv recherché
- * 
- */
-void 
-generation_chemin();
+int validation();
+
 
 /**
- * @brief Cette fonction permet de modifier l'état de salle. Cela consiste en la re-ecriture du fichier que la personne a donner
+ * @brief Cette fonction permet de changer un parametre dans un tableau csv
  * 
- * @return int 
+ * @param value 
+ * @param etage 
+ * @param numero_salle 
+ * @param jour 
+ * @param heure 
+ * @param minute 
  */
-int 
-modif_etat();
+int change_value(int value,int etage,int numero_salle,char jour[10],int heure,int minute);
 
+int reinitialisation();
 
 
 #endif

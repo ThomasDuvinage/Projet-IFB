@@ -74,6 +74,7 @@ bool identification(){
                 printf("Si vous voulez reesayer appuyer sur r et si vous souhaitez creer un compte appuyé sur c \n");
                 scanf(" %c",&ask_retry);
             } while (ask_retry != 'r' && ask_retry != 'c');
+            system("clear");
         }
         
     }while (check != true);
@@ -126,7 +127,6 @@ void lecture_identifiant(int* nb_employe){
 	}
 
     *nb_employe = i;
-    printf("nombre agent = %d\n",nombre_agent);
 	/* close file */
 	fclose(f);//femeture de la lecture du fichier
 }

@@ -1,4 +1,5 @@
 #include "generation_timetable.h"
+#include "../Validation/validation.h"
 #include "../identification/identification.h"
 #include "../recherche_salle/recherche_salle.h"
 #include"../buffer.h"
@@ -33,7 +34,7 @@ void generate(){
 		strcat(chemin_agent,"_");
 		strcat(chemin_agent,namePassBuffer[i*2]);//nous multiplions par 2 afin de selectionner uniquement les noms des agents 
 		strcat(chemin_agent,".csv"); //on ajoute la description du fichier
-		printf("%s\n",chemin_agent);
+		//printf("%s\n",chemin_agent);
 
 		reecriture_fichier = fopen(chemin_agent,"w");
 
@@ -60,7 +61,6 @@ void generate(){
 	 * @brief ces tableaux d'entier permettent de stocker les salles qui doivent etre nettoyer
 	 * 
 	 */
-	int etage_1[200]={0}, etage_2[200]= {0},etage_3[200]={0};
 	int salle_nettoyer[7][50] = {0};
 	int nb_salle_nettoyer = 0;
 
@@ -83,8 +83,8 @@ void generate(){
 					//la boucle qui va suivre va permettre de remplir les dispo de l'etage 1
 					for (numero_salle = MIN_SALLE; numero_salle <= MAX_SALLE; numero_salle++)
 					{
-						salle = numero_salle+(100*etage); 
-						index = ((heure-8)*4)+(minute/15);
+						salle = numero_salle+(100*etage); //comme nous faisons varier les etages de 0 a 2 nous sommes obligé de faire une incrementation des salles
+						index = ((heure-8)*4)+(minute/15); //cet index permet d'aller lire d'inserer dans l'emploi du temps provisoir de l'agent son etat
 
 						for(int k = 0; k< 15;k++){//cette boucle permet de vider la variable get_jour afin de pouvoir ecrire un nouveau jour
 							strcpy(&get_jour[k],"\0");//permet de mettre a jour la variable de get_jour 
@@ -107,24 +107,25 @@ void generate(){
 							}
 
 							if(indice_validation == 0){//or si celle-ci n'appartient pas encore au tableau alors nous la nettoyons
-								int agent_choisi = choix_agent();
-								int loop_stop = 0;
+								int agent_choisi = choix_agent();//cette variable me permet de stocker le numero de l'agent car en comme j'utilise la fonction rand je ne peux pas l'appeller a chaque fois 
+								int loop_stop = 0;//cette variable me permet de savoir combien de fois j'ai essaye de nettoyer une salle afin de ne pas essayer à l'infini
 
-								while(agent_check_disponibility[agent_choisi][index] != 0 && loop_stop < 10){
-									agent_choisi = choix_agent();
+								//si vous arrivez pas a trouver facilement alors vous devez augmenter le nombre de boucle afin que le rand tombe sur le bon agent 
+								while(agent_check_disponibility[agent_choisi][index] != 0 && loop_stop < 10){//cette boucle me permet de trouver le bon agent qui est disponible pour realiser la tache a faire
+									agent_choisi = choix_agent();//si les parametres ne correspondent pas alors je regenere un agent
 									loop_stop++;
-									
 								}
 
-								if(loop_stop != 10){
+								if(loop_stop != 10){//si nous avons pas atteint le seuil de loop max alors cela signifie que nous avons trouver le bon agent
 									ajout_tache(agent_choisi,get_jour,salle,etage,heure,minute);
+									change_value(3,etage+1,salle,get_jour,heure,minute);
 									salle_nettoyer[jour][nb_salle_nettoyer] = salle;//on ajoute la salle a l'index qui nous interresse
 									nb_salle_nettoyer++;//permet de deplacer le curseur afin d'ajouter la salle suivante au bon index dans le tableau
 									agent_check_disponibility[agent_choisi][index] = 1;
 								}
-								else{
-									printf("Nous n'avons pas pu trouver de disponibilité d'agent pour le nettoyage de la salle : %d\n",numero_salle);
-								}
+								// else{
+								// 	printf("Nous n'avons pas pu trouver de disponibilité d'agent pour le nettoyage de la salle : %d\n",numero_salle);
+								// }
 							}
 						}
 					}

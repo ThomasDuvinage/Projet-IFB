@@ -49,7 +49,7 @@ int choix_agent(){
         }
     }
 
-    printf("\n\n");
+    //printf("\n\n");
     //permet d'afficher tous les parametres que nous avons trié
     // for(int p = 0; p < nombre_agent; p++){
     
@@ -70,7 +70,7 @@ int choix_agent(){
 
     for(int k = 0;k<nombre_agent;k++){
         agent_tampon_tri[k] = agents_karma[k];
-        printf("agent_tri = %d\n",agent_tampon_tri[k]);
+        //printf("agent_tri = %d\n",agent_tampon_tri[k]);
     }
 
     //nous trions les scores du plus petit au plus grand afin de determiner le bon agent 
@@ -107,13 +107,13 @@ int choix_agent(){
     }
 
     //permet d'afficher tous les parametres que nous avons trié
-    printf("\n");
-    for(int p = 0; p < nombre_agent; p++){
-        printf("score = %d    ",score[p]);
-        printf("agent = %d    ",agent_tampon_tri[p]);
+    // printf("\n");
+    // for(int p = 0; p < nombre_agent; p++){
+    //     printf("score = %d    ",score[p]);
+    //     printf("agent = %d    ",agent_tampon_tri[p]);
             
-        printf("%d\n",p);
-    }
+    //     printf("%d\n",p);
+    // }
     //le premier indice de du tableau agent_karma permet de connaitre l'agent qui doit faire la tache car il possedre le plus petit karma et le plus petit temps de travail.
     //seulement si plusieurs personne on le meme score alors nous devons choisir de maniere aleatoire afin que ce ne soit pas tout le temps la meme personne qui se retrouve choisi
 
@@ -134,16 +134,16 @@ int choix_agent(){
     int choix_personnel,print_value;
     if(repetition-1 > 0){
         
-        printf("repetition - 1 = %d",repetition-1);
+        //printf("repetition - 1 = %d",repetition-1);
         print_value = rand()%(repetition-1);
         choix_personnel = agent_tampon_tri[print_value];
-        printf("print value = %d\n",print_value);
-        printf("choix personnel = %d\n",agent_tampon_tri[print_value]);
+        // printf("print value = %d\n",print_value);
+        // printf("choix personnel = %d\n",agent_tampon_tri[print_value]);
         
     }
     else{
         choix_personnel = agent_tampon_tri[0];
-        printf("\n\n Directement print value = %d\n",print_value);
+        //printf("\n\n Directement print value = %d\n",print_value);
     }
 
     //la boucle qui suit permet de savoir la position de l'agent dans le tableau des temps de travail afin d'ajouter le temps de travail dans la bonne case du tableau
@@ -159,7 +159,7 @@ int choix_agent(){
         
     }
 
-    printf("index agent travail : %d\n",index_agent_temps_travail);
+    //printf("index agent travail : %d\n",index_agent_temps_travail);
     //printf("CHOIX = %d\n",choix_personnel);
 
     return choix_personnel;

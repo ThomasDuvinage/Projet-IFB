@@ -22,6 +22,8 @@ extern char nom_salle[50]; //utilisée dans la fonction de recherche de salle
 //VALIDATION
 extern char chemin_fichier[50];// utilisée dans la fonction de validation
 int numero_salle,etage;// declaration des variables 
+//initialisation
+extern char path_to_csv[50];
 
 
 #endif
