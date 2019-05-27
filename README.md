@@ -45,7 +45,7 @@ Par exemple l’agent de ménage rentre son identifiant et on lui génère la li
  - Génération des emplois du temps 
 
     Cette fonction va nous permettre de générer pour chaque agent un emploi du temps en fonction de la disponibilité de chaque salle.
-    Pour cela nous lisons le planning de chaque salle du jour actuelle au dernier jour de la semaine, nous créons deux tableaux qui permettent de stocker toutes les salles qui peuvent être nettoyer pour chaque quart d’heure d’une journée. 
+    Pour cela nous lisons le planning de chaque salle du jour actuelle au dernier jour de la semaine, nous créons deux tableaux qui permettent de stocker toutes les salles qui peuvent être nettoyées pour chaque quart d’heure d’une journée. 
     Nous savons désormais toutes les salles que nous pouvons nettoyer.
 
     Or maintenant nous devons choisir l’agent qui va faire la tâche. Nous souhaitions faire de la sorte que tous les agents est le plus possible le même temps de travail et le même taux de malchance. 
