@@ -20,6 +20,11 @@ Par exemple l’agent de ménage rentre son identifiant et on lui génère la li
 
     En sortie de la fonction identification nous avons un booléen celui-ci permet dans le main.c de mettre une condition qui permet de définir l’entrée dans la plate-forme.
 
+    Voici le foncitonnement de la fonction :
+
+    ![Fonction identification](img/Diagramme_identification.png)
+
+
  - Fonction de lecture_identifiant 
 
     Permet de lire dans le fichier tous les identifiants et leurs mots de passe afin de les stocker dans un tableau à deux dimensions. Ainsi de deux en deux nous avons l’identifiant et le mot de passe. Ce tableau est utilisé dans la fonction principale de l’identification c’est à dire la fonction identification. Nous ne rentrons pas ce tableau en paramètre, mais nous le définissons en extern cela signifie que toutes les fonctions peuvent y avoir accès et que nous pouvons le modifier et lire les modifications effectuées. 
