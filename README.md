@@ -115,13 +115,10 @@ Par exemple l’agent de ménage rentre son identifiant et on lui génère la li
 Voici l'algorythme (pseudo-code) d'une des fonctions importantes de notre projet : 
 
  - La fonction Identification :
-    
-    <ins>Booléen</ins> fonction Identification() </br>
-    <ins>INCLURE</ins> </br>
-    <ins>VARIABLES</ins> <ins>ENTIER:</ins> i, nb_employe = 0 </br>
-
-    #TODO finir l'algorythme
-
+        
+    <p align="center">
+    <img width="350" height="500" src="img/img/algo fonction principale.png">
+    </p>
 
 
 ## Pour compiler: 

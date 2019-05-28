@@ -18,7 +18,6 @@ bool identification(){
 
     int create_info = 0;//cette variable permet de savoir si la personne a creer un compte dans ce cas on lui demande directement de s'identifier
     
-
     do {
         if(ask_retry == 'r'){
 
