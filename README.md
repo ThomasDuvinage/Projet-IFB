@@ -117,8 +117,8 @@ Voici l'algorythme (pseudo-code) d'une des fonctions importantes de notre projet
  - La fonction Identification :
         
     <p align="center">
-    <img width="500" height="500" src="img/algo1.png">
-    <img width="500" height="500" src="img/algo2.png">
+    <img width="700" height="500" src="img/algo1.png">
+    <img width="700" height="500" src="img/algo2.png">
     </p>
 
 ## Pour compiler: 
