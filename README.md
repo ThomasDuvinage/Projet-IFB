@@ -116,7 +116,7 @@ Voici l'algorythme (pseudo-code) d'une des fonctions importantes de notre projet
 
  - La fonction Identification :
     
-    <u>Booléen</u> fonction Identification()
+    <u>Booléen</u> fonction Identification() </br>
     <u>INCLURE</u> </br>
     <u>VARIABLES ENTIER:</u> i, nb_employe = 0 </br>
 
