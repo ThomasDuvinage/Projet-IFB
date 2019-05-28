@@ -110,6 +110,19 @@ Par exemple l’agent de ménage rentre son identifiant et on lui génère la li
 
     Ainsi après nous lisons les scores puis nous trions les scores du plus petit au plus grand en replaçant les index. Ainsi nous lisons scores si l’index 0 est différent du 1 alors l’agent sera l’index 0 su tableau des agents. S’il y a une égalité alors nous choisissons aléatoirement. 
 
+## Algorythme d'une fonction principale
+
+Voici l'algorythme (pseudo-code) d'une des fonctions importantes de notre projet : 
+
+ - La fonction Identification :
+    
+    <u>Booléen</u> fonction Identification()
+    <u>INCLURE</u> 
+    <u>VARIABLES ENTIER:</u> i, nb_employe = 0
+
+    #TODO finir l'algorythme
+
+
 
 ## Pour compiler: 
 Pour compiler ce projet en ligne de commande vous devez taper :
