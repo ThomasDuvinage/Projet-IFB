@@ -117,9 +117,9 @@ Voici l'algorythme (pseudo-code) d'une des fonctions importantes de notre projet
  - La fonction Identification :
         
     <p align="center">
-    <img width="500" height="500" src="img/algo_fonction_principale.png">
+    <img width="500" height="500" src="img/algo1.png">
+    <img width="500" height="500" src="img/algo2.png">
     </p>
-
 
 ## Pour compiler: 
 Pour compiler ce projet en ligne de commande vous devez taper :
