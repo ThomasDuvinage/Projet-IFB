@@ -118,7 +118,7 @@ Voici l'algorythme (pseudo-code) d'une des fonctions importantes de notre projet
     
     <ins>Booléen</ins> fonction Identification() </br>
     <ins>INCLURE</ins> </br>
-    <ins>VARIABLES ENTIER:</ins> i, nb_employe = 0 </br>
+    <ins>VARIABLES</ins> <ins>ENTIER:</ins> i, nb_employe = 0 </br>
 
     #TODO finir l'algorythme
 
