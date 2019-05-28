@@ -110,9 +110,9 @@ Par exemple l’agent de ménage rentre son identifiant et on lui génère la li
 
     Ainsi après nous lisons les scores puis nous trions les scores du plus petit au plus grand en replaçant les index. Ainsi nous lisons scores si l’index 0 est différent du 1 alors l’agent sera l’index 0 su tableau des agents. S’il y a une égalité alors nous choisissons aléatoirement. 
 
-## Algorythme d'une fonction principale
+## Algorithme d'une fonction principale
 
-Voici l'algorythme (pseudo-code) d'une des fonctions importantes de notre projet : 
+Voici l'algorithme (pseudo-code) d'une des fonctions importantes de notre projet : 
 
  - La fonction Identification :
         
