@@ -14,9 +14,9 @@ Par exemple l’agent de ménage rentre son identifiant et on lui génère la li
 
     Pour appeler cette fonction, nous faisons : 
     
-    ````
-    bool identification();
-    ````
+```C
+bool identification();
+```
 
     En sortie de la fonction identification nous avons un booléen celui-ci permet dans le main.c de mettre une condition qui permet de définir l’entrée dans la plate-forme.
 
@@ -36,18 +36,18 @@ Par exemple l’agent de ménage rentre son identifiant et on lui génère la li
 
     Pour appeler cette fonction nous faisons :
 
-    ````
-    void lecture_identifiant(int* nb_employe);
-    ````
+```C
+void lecture_identifiant(int* nb_employe);
+```
  - Fonction création_agent 
 
     Cette fonction est utilisée quand la personne souhaite créer un compte. On lui demande l’identifiant et le mot de passe qu’elle souhaite ajouter puis nous l’ajoutons dans le fichier dans lequel tous les agents sont répertoriés. Puis nous relançons l’identification avec la lecture du fichier et la demande des paramètres.  De plus cette fonction nous permet de créer un emploi du temps vide pour la personne et ainsi lors de la prochaine génération des emplois du temps elle se verra attribuer un emploi du temps.
 
     Pour appeler cette fonction nous faisons : 
 
-    ````
+    ```C
     int creation_agent(int* nb_employe);
-    ````
+    ```
 
  - Génération des emplois du temps 
 
@@ -74,35 +74,35 @@ Par exemple l’agent de ménage rentre son identifiant et on lui génère la li
 - Identification
     namePassBuffer est un tableau de dimension 2 qui permet d’accueillir le nom et les mots de passe de chaque agent. Nous le remplissons en lisant le fichier où sont stockés tous les ID et mots de passe des agents. Ce tableau est déclaré comme ci-dessous :
 
-    ````
+    ```C
     extern char namePassBuffer[45][20];
-    ````
+    ```
 
     Cela permet d’avoir accès au tableau dans tous les fichiers qui incluent le fichier buffet.h. Le tableau est donc modifiable et lisible. Nous déclarons le tableau global. 
 
 
     chemin_fichier est un tableau qui permet de stocker le chemin du fichier qui permet d’ouvrir le fichier correspondant à la salle à ouvrir. 
 
-    ````
+    ```C
     extern char chemin_fichier[50];
-    ````
+    ```
 
     Nous déclarons également ce tableau en global afin d’y avoir accès dans tous les fichiers, cela permet également de ne pas passer le tableau en paramètre de la fonction de lecture de fichier. 
     Nous retrouvons exactement le même type de tableau ayant le même but dans des fonction similaires, ils ne seront donc pas détaillés.
 
 - Choix de l’agent pour la tâche
 
-    ````
+    ```C
     extern int karma[20];
     extern int temps_travail[20];
-    ````
+    ```
 
     Ces deux tableaux permettent de stockés la malchance que nous avons appelé karma et le temps de travail des agents. En parallèle nous remplissons un tableau qui stocke les index de tous les agents :
 
-    ````
+    ```C
     int agents_karma[20] = {0};
     int agents_travail[20] = {0};
-    ````
+    ```
 
     Nous le remplissons de 0 au début et après avec une boucle for nous les remplissions de 0 à nombre agent. Nous sommes donc limités à 20 agents avec ces tableaux. 
 
@@ -119,7 +119,7 @@ Pour compiler ce projet en ligne de commande vous devez taper :
 
 Très important pour faire cela vous devez faire en sorte que le .h ne soit lu qu'une seule fois donc vous devez ajouter : (exemple avec identification.h)
 
-````
+```C
 ///Tout en haut de votre .h
 #ifndef IDENTIFICATION_H_INCLUDE
 #define IDENTIFICATION_H_INCLUDE
@@ -128,7 +128,7 @@ Très important pour faire cela vous devez faire en sorte que le .h ne soit lu q
 
 #endif ///a la fin de votre .h
 
-````
+```
 
 ## IMPORTANT
 
