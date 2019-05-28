@@ -14,9 +14,9 @@ Par exemple l’agent de ménage rentre son identifiant et on lui génère la li
 
     Pour appeler cette fonction, nous faisons : 
     
-```C
-bool identification();
-```
+    ```C
+    bool identification();
+    ```
 
     En sortie de la fonction identification nous avons un booléen celui-ci permet dans le main.c de mettre une condition qui permet de définir l’entrée dans la plate-forme.
 
@@ -36,9 +36,9 @@ bool identification();
 
     Pour appeler cette fonction nous faisons :
 
-```C
-void lecture_identifiant(int* nb_employe);
-```
+    ```C
+    void lecture_identifiant(int* nb_employe);
+    ```
  - Fonction création_agent 
 
     Cette fonction est utilisée quand la personne souhaite créer un compte. On lui demande l’identifiant et le mot de passe qu’elle souhaite ajouter puis nous l’ajoutons dans le fichier dans lequel tous les agents sont répertoriés. Puis nous relançons l’identification avec la lecture du fichier et la demande des paramètres.  De plus cette fonction nous permet de créer un emploi du temps vide pour la personne et ainsi lors de la prochaine génération des emplois du temps elle se verra attribuer un emploi du temps.
