@@ -68,6 +68,60 @@ Par exemple l’agent de ménage rentre son identifiant et on lui génère la li
 
     Une fois que toutes les taches sont distribuées alors toutes les personnes peuvent avoir accès à leur emploi du temps en allant le chercher dans le dossier des emplois du temps.
 
+ - Recherche de salle
+
+    La fonction recherche_salle permet de connaître la disponibilité de la salle en fonction des paramètres entrés. Nous avons comme autres paramètres l’étage, le numéro de la salle, le jour, l’heure et les minutes en quart d’heure.
+    
+    Cette fonction utilise des entiers pour l’etage, le numero_salle , l’heure, la minute et un caractère pour le jour et retourne un entier. Les minutes sont associées à 0 ;15 ;30 ;45. On s’intéresse donc au quart d’heure.
+    Le résultat sera un entier car elle va lire la disponibilité de la salle et en fonction de cela elle va retourner une valeur (0,1,2,3).
+
+    Par exemple :
+
+    |Minutes | 00  | 15  | 30  | 45  |
+    | ---    | --- | --- | --- | --- |
+    |8h      | 3  | 0   | 0    | 0   |
+    |10h     | 0  | 1   | 0    | 1   |
+    |11h     | 1  | 0   | 0    | 1   |
+    |12h     | 0  | 1   | 1    | 1   |
+    |13h     | 1  | 1   | 0    | 1   |
+    |14h     | 0  | 1   | 0    | 1   |
+    |15h     | 0  | 0   | 0    | 0   |
+    |16h     | 1  | 1   | 1    | 1   |
+    |17h     | 0  | 1   | 0    | 0   |
+    |18h     | 0  | 1   | 0    | 1   |
+
+    La valeur 0 étant le code pour dire que la salle est à faire, la valeur 1 étant le code pour dire que la salle est indisponible, la valeur 2 est le code pour dire que la salle est à faire mais qu’elle est occupée et la valeur 3 permet de dire la salle est à faire.
+    Ici le tableau est composé de 4 colonnes correspondant au quart d’heure et de 3 lignes correspondant à l’étage.
+    Ensuite nous avons créé une chaine caractère permettant de recevoir le numéro de la salle afin de déterminer à quelle étage on se trouve nommé :
+    
+    ```C
+    char nb_salle[12]
+    ```
+
+    Ainsi qu’une autre chaine caractère nommé :
+
+    ```C 
+    char numéro_etage[5] 
+    ```
+    On va convertir l’entier numéro_salle en caractère pour l’insérer dans la chaine de caractère nb_salle grâce à un sprintf.
+    Ensuite on utilisera la concaténation pour décrire le chemin pour accéder au fichier .csv grâce à la fonction strcat ainsi le chemin à suivre pour accéder au fichier csv est le suivant :
+
+    Utilisation de la boucle SI :
+    Avec la boucle si on vérifie que les paramètres entrés par l’utilisateur sont les bons. C'est-à-dire que les valeurs entrées pour les minutes sont bien 00 ; 15 ; 30 ; 45 que les étages soient bien compris entre 1 et 3 et que les heures sont bien comprises entre 8 et 18 heures. 
+    Si les conditions précédentes sont respectées alors le fichier csv s’ouvre.
+
+    On a inséré dans la boucle SI une autre boucle SI qui si f est nul alors un message d’erreur est affiché via un printf.
+    Après avoir ouvert le fichier, nous le lisons ligne par ligne en stockant toutes les valeurs dans le tableau d’entier DISPO_J pouvant contenir ici 40 valeurs.
+
+    Ensuite nous avons créé la variable etat_return de type entier qui retourne l’état de la salle ou -1 s’il y a une erreur dans les données saisies.
+
+    Ensuite nous refermons le fichier csv en utilisant la fonction Fclose(f).
+
+    Si les conditions précédentes sont respectées alors on peut retourner la valeur de l’index qui nous donnera la position dans le tableau et donc l’état de la salle si elle est à faire, déjà faite ou occupé grâce à la formule suivante qui retourne donc notre entier :
+    Index = ((heure-8)*4)+(minute/15)
+    
+    A la fin du programme on retourne donc la variable entière return_etat qui soit 0 ; 1 ; 2 ; 3 , sinon on retourne -1.
+
 
 ## Les tableaux :
 
