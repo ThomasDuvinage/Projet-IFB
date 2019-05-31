@@ -20,7 +20,7 @@ Par exemple l’agent de ménage rentre son identifiant et on lui génère la li
 
     En sortie de la fonction identification nous avons un booléen celui-ci permet dans le main.c de mettre une condition qui permet de définir l’entrée dans la plate-forme.
 
-    Voici le foncitonnement de la fonction :
+    Voici le fonctionnement de la fonction :
 
     <p align="center">
     <img width="350" height="500" src="img/Diagramme_identification.png">
@@ -101,7 +101,7 @@ Par exemple l’agent de ménage rentre son identifiant et on lui génère la li
     Ainsi qu’une autre chaine caractère nommé :
 
     ```C 
-    char numéro_etage[5] 
+    char numero_etage[5] 
     ```
     On va convertir l’entier numéro_salle en caractère pour l’insérer dans la chaine de caractère nb_salle grâce à un sprintf.
     Ensuite on utilisera la concaténation pour décrire le chemin pour accéder au fichier .csv grâce à la fonction strcat ainsi le chemin à suivre pour accéder au fichier csv est le suivant :
@@ -119,8 +119,14 @@ Par exemple l’agent de ménage rentre son identifiant et on lui génère la li
 
     Si les conditions précédentes sont respectées alors on peut retourner la valeur de l’index qui nous donnera la position dans le tableau et donc l’état de la salle si elle est à faire, déjà faite ou occupé grâce à la formule suivante qui retourne donc notre entier :
     Index = ((heure-8)*4)+(minute/15)
-    
+
     A la fin du programme on retourne donc la variable entière return_etat qui soit 0 ; 1 ; 2 ; 3 , sinon on retourne -1.
+
+    Voici le fonctionnement de la fonction :
+
+    <p align="center">
+    <img width="350" height="500" src="img/Diagramme_recherche.png">
+    </p>
 
 
 ## Les tableaux :
