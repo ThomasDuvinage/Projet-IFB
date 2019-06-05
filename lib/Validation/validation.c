@@ -22,7 +22,7 @@ int validation(){
     char rep;
     do{
     printf("Avez vous nettoyez la salle? (y/n) \n"); //on demande à l'agent si il a realisé une action
-    scanf("%c",&rep);
+    scanf(" %c",&rep);
     }while(rep != 'y' && rep !='n' );
 
     if (rep == 'n')

@@ -16,7 +16,7 @@
 // ****** MAIN ******
  
 int main() {
-	system("clear");
+	system("clear");//permet d'effacer toutes les infos du terminal
 	if (identification()) {
 		system("clear");
 		printf("\nBIENVENUE SUR NOTRE PLATFORME\n\n\n");
@@ -47,17 +47,20 @@ int main() {
 
 		if(choice == 1){
 			//faire la validation 
+			system("clear");
 			validation(); //quand la personne valide son action nous devonsnous regenerer afin de verifier 
 			//si la salle n'a pas ete nettoye alors regenerons l'emplois du temps pour que la salle soit nettoyee
 		}
 
 		else if (choice == 2)
 		{
+			system("clear");
 			generate();
 		}
 
 		else if (choice == 3)
 		{
+			system("clear");
 			reinitialisation();
 		}
 		
