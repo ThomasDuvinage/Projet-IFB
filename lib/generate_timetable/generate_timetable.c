@@ -12,6 +12,7 @@ int agents_karma[20] ;
 int agents_travail[20] ;
 
 void generate(){
+	reinitialisation();
 	char week[15][20] = {"Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"};//permet de stocker tous les jours de la semaine 
 
 	//on genere les tableaux pour les agents

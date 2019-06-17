@@ -26,6 +26,8 @@ int reinitialisation(){
 						salle = numero_salle+(100*etage); //comme nous faisons varier les etages de 0 a 2 nous sommes obligé de faire une incrementation des salles
 						index = ((heure-8)*4)+(minute/15); //cet index permet d'aller lire d'inserer dans l'emploi du temps provisoir de l'agent son etat
 
+						//printf("salle number = %d\n",salle);
+
 						for(int k = 0; k< 15;k++)
                         {//cette boucle permet de vider la variable get_jour afin de pouvoir ecrire un nouveau jour
 							strcpy(&get_jour[k],"\0");//permet de mettre a jour la variable de get_jour 
@@ -34,7 +36,7 @@ int reinitialisation(){
 
 						if(recherche_salle(etage+1,salle,get_jour,heure,minute) == 3 || recherche_salle(etage+1,salle,get_jour,heure,minute) == 2)
                         {
-                            change_value(0,etage+1,numero_salle,get_jour,heure,minute);
+                            change_value(0,etage+1,salle,get_jour,heure,minute);
 						}
 					}
 				}

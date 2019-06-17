@@ -1,4 +1,6 @@
 #include "identification.h"
+#include "../Validation/validation.h"
+#include "../generate_timetable/generation_timetable.h"
 #include "../buffer.h"
 
 /**
@@ -33,6 +35,7 @@ bool identification(){
             printf("NOM : ");
             //on remplie nom avec la chaine de caractere que l'utilisateur vient de rentrer
             scanf(" %s",nom_entre);
+            strcpy(nom_agent,nom_entre);
             
             //printf("%d \n",strncmp(nom_entre,nom_pswd[0],strlen(nom_entre)));
             //printf("%s \n",nom_entre);
@@ -55,6 +58,12 @@ bool identification(){
                     check = true;
                 }
             }
+
+            if(create_info == 1){
+                reinitialisation();
+                generate();
+            }
+            
             create_info = 0;
         }
 
@@ -109,7 +118,6 @@ void lecture_identifiant(int* nb_employe){
 	{
 		field=strtok(buffer,",");//on separe le fichier en chaine de caractere entre chaque (,) 
 		strcpy(nom,field);//on associe a la variable la valeur en entier de la chaine de caractere de la valeur lue precedement --> fonction atoi()
-        //strncpy(nom,nom_agent,strnlen(nom));
         //printf("%s \n",nom);
 
 		field=strtok(NULL,",");
@@ -166,7 +174,6 @@ int creation_agent(int* nb_employe){
     fprintf(f,"\n%s,%s", namePassBuffer[*nb_employe], namePassBuffer[*nb_employe+1]);
 	
 	fclose(f);
-
 
     return 0;
 }

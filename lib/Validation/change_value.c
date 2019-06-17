@@ -24,7 +24,7 @@ int change_value(int value,int etage,int numero_salle,char jour[10],int heure,in
     sprintf(numero_etage, "%d",etage);//on convertit l'entier numero salle en char dans la chaine de caracteres nb_salle
     strcat(path_to_csv,&numero_etage[0]);
     strcat(path_to_csv,"/");
-    //printf("jour = %s\n",jour);
+    //printf("etage %s\n",numero_etage);
     strcat(path_to_csv,jour);
     strcat(path_to_csv,"/");
     strcat(path_to_csv,"p");
@@ -39,7 +39,7 @@ int change_value(int value,int etage,int numero_salle,char jour[10],int heure,in
 
 	if( f == NULL)//si on arrive pas a ouvrir on affiche un message 
 	{
-		printf("Impossible d'ouvrir le fichier '%s'\n",chemin_fichier);
+		printf("Impossible d'ouvrir le fichier dans change value'%s'\n",chemin_fichier);
 		exit(1);
 	}
 

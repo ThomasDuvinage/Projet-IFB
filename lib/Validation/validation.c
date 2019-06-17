@@ -5,7 +5,6 @@
 
 char chemin_fichier[50] = "csv_files/etage_";//aller voir buffer.h pour la declaration de la variable
 int numero_salle,etage;// declaration des variables
-char nom_agent[20];
 
 int validation(){
     char buffer[BSIZE];

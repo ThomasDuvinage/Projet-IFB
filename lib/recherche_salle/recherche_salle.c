@@ -31,7 +31,7 @@ int recherche_salle(int etage,int numero_salle,char jour[],int heure,int minute)
     sprintf(nb_salle, "%d", numero_salle);//on convertit l'entier numero salle en char dans la chaine de caracteres nb_salle
     strcat(nom_salle,nb_salle); //on concatene les deux chaines de caracteres
     strcat(nom_salle,".csv"); //on ajoute la description du fichier
-    //printf("%s\n",nom_salle);
+    //printf("salle = %s\n",nom_salle);
 
     int etat_return;//cette variable permet de retourner l'etat de la salle ou -1 si les parametres ne sont pas bon
 
@@ -76,7 +76,6 @@ int recherche_salle(int etage,int numero_salle,char jour[],int heure,int minute)
             }
 
         }
-
 
             /* close file */
             fclose(f);//femeture de la lecture du fichier
